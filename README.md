@@ -1,4 +1,4 @@
-# Machine Learning Labs for Spark Python
+# Machine Learning Labs for Spark Tensorflow
 
 ## To view the labs
 Open 'README.html' in browser.  
@@ -7,7 +7,7 @@ Open 'README.html' in browser.
 ## To work on the labs
 - Run the following command
 ```bash
-    $  ./run-jupyter.sh
+    $  jupyter notebook
 ```
 - And open the link printed on the console.
 
