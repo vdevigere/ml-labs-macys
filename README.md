@@ -1,4 +1,4 @@
-# Machine Learning Labs for Spark Tensorflow
+# Machine Learning Labs for Tensorflow
 
 ## To view the labs
 Open 'README.html' in browser.  
