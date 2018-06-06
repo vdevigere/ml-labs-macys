@@ -11775,19 +11775,18 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Setting-up-Spark-environment">Setting up Spark environment<a class="anchor-link" href="#Setting-up-Spark-environment">&#182;</a></h1><h2 id="Step-1-:-Login-to-the-VM">Step 1 : Login to the VM<a class="anchor-link" href="#Step-1-:-Login-to-the-VM">&#182;</a></h2><p>Instructor will provide details</p>
-<h2 id="Install-Spark">Install Spark<a class="anchor-link" href="#Install-Spark">&#182;</a></h2><div class="highlight"><pre><span></span>$   <span class="nb">cd</span>
-    $   rm -rf  spark   <span class="c1"># cleanup existing spark installation (if any)</span>
-    $   tar xvf   files/spark-2.2.0-bin-hadoop2.7.tgz
-    $   mv  spark-2.2.0-bin-hadoop2.7    spark
+<h1 id="Setting-up-Tensorflow-environment">Setting up Tensorflow environment<a class="anchor-link" href="#Setting-up-Tensorflow-environment">&#182;</a></h1><h2 id="Step-1-:-Login-to-the-VM">Step 1 : Login to the VM<a class="anchor-link" href="#Step-1-:-Login-to-the-VM">&#182;</a></h2><p>Instructor will provide details</p>
+<h2 id="Install-Tensorflow">Install Tensorflow<a class="anchor-link" href="#Install-Tensorflow">&#182;</a></h2><div class="highlight"><pre><span></span>$   <span class="nb">cd</span>
+    $   rm -rf  tensorflow   <span class="c1"># cleanup existing tensorflow installation (if any)</span>
+    $   pip install tensorflow
 </pre></div>
-<h2 id="Get-the-labs">Get the labs<a class="anchor-link" href="#Get-the-labs">&#182;</a></h2><div class="highlight"><pre><span></span>$ git clone --depth <span class="m">1</span>  git@github.com:elephantscale/ml-labs-spark-python.git
+<h2 id="Get-the-labs">Get the labs<a class="anchor-link" href="#Get-the-labs">&#182;</a></h2><div class="highlight"><pre><span></span>$ git clone --depth <span class="m">1</span>  git@github.com:elephantscale/ml-labs-tf.git
 </pre></div>
 <h2 id="Get-the-data">Get the data<a class="anchor-link" href="#Get-the-data">&#182;</a></h2><div class="highlight"><pre><span></span>$  <span class="nb">cd</span> data<span class="p">;</span>  git pull<span class="p">;</span>   <span class="nb">cd</span>
 </pre></div>
 <p>Also you can download it from <a href="https://s3.amazonaws.com/elephantscale-public/data/datasets.zip">here</a> for your laptop.</p>
-<h2 id="Start-Jupyter">Start Jupyter<a class="anchor-link" href="#Start-Jupyter">&#182;</a></h2><div class="highlight"><pre><span></span>$   <span class="nb">cd</span> ml-labs-spark-python
-    $   nohup ./run-jupyter.sh <span class="p">&amp;</span>
+<h2 id="Start-Jupyter">Start Jupyter<a class="anchor-link" href="#Start-Jupyter">&#182;</a></h2><div class="highlight"><pre><span></span>$   <span class="nb">cd</span> ml-labs-tf
+    $   jupyter notebook <span class="p">&amp;</span>
 </pre></div>
 <p>Access Jupyter notebook link from the browser.</p>
 
