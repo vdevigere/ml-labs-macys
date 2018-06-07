@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,7 +11773,8 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11787,7 +11790,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -11795,9 +11798,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.regression</span> <span class="k">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">VectorAssembler</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spark UI running on http://YOURIPADDRESS:&#39;</span> <span class="o">+</span> <span class="n">sc</span><span class="o">.</span><span class="n">uiWebUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LinearRegression</span>
 </pre></div>
 
 </div>
@@ -11805,7 +11806,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11815,19 +11817,1546 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">housePrices</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;/data/house-prices/house-sales-full.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">housePrices</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">housePrices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/data/house-prices/house-sales-full.csv&quot;</span><span class="p">)</span>
+<span class="n">housePrices</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DocumentID</th>
+      <th>Date</th>
+      <th>SalePrice</th>
+      <th>PropertyID</th>
+      <th>PropertyType</th>
+      <th>ym</th>
+      <th>zhvi_px</th>
+      <th>zhvi_idx</th>
+      <th>AdjSalePrice</th>
+      <th>NbrLivingUnits</th>
+      <th>...</th>
+      <th>Bathrooms</th>
+      <th>Bedrooms</th>
+      <th>BldgGrade</th>
+      <th>YrBuilt</th>
+      <th>YrRenovated</th>
+      <th>TrafficNoise</th>
+      <th>LandVal</th>
+      <th>ImpsVal</th>
+      <th>ZipCode</th>
+      <th>NewConstruction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>9/16/14</td>
+      <td>280000</td>
+      <td>1000102</td>
+      <td>Multiplex</td>
+      <td>9/1/14</td>
+      <td>405100</td>
+      <td>0.930836</td>
+      <td>300805.0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>6</td>
+      <td>7</td>
+      <td>1991</td>
+      <td>0</td>
+      <td>0</td>
+      <td>70000</td>
+      <td>229000</td>
+      <td>98002</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>6/16/06</td>
+      <td>1000000</td>
+      <td>1200013</td>
+      <td>Single Family</td>
+      <td>6/1/06</td>
+      <td>404400</td>
+      <td>0.929228</td>
+      <td>1076162.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.75</td>
+      <td>4</td>
+      <td>10</td>
+      <td>2005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>203000</td>
+      <td>590000</td>
+      <td>98166</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1/29/07</td>
+      <td>745000</td>
+      <td>1200019</td>
+      <td>Single Family</td>
+      <td>1/1/07</td>
+      <td>425600</td>
+      <td>0.977941</td>
+      <td>761805.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>4</td>
+      <td>8</td>
+      <td>1947</td>
+      <td>0</td>
+      <td>0</td>
+      <td>183000</td>
+      <td>275000</td>
+      <td>98166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2/25/08</td>
+      <td>425000</td>
+      <td>2800016</td>
+      <td>Single Family</td>
+      <td>2/1/08</td>
+      <td>418400</td>
+      <td>0.961397</td>
+      <td>442065.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.75</td>
+      <td>5</td>
+      <td>7</td>
+      <td>1966</td>
+      <td>0</td>
+      <td>0</td>
+      <td>104000</td>
+      <td>229000</td>
+      <td>98168</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>3/29/13</td>
+      <td>240000</td>
+      <td>2800024</td>
+      <td>Single Family</td>
+      <td>3/1/13</td>
+      <td>351600</td>
+      <td>0.807904</td>
+      <td>297065.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1948</td>
+      <td>0</td>
+      <td>0</td>
+      <td>104000</td>
+      <td>205000</td>
+      <td>98168</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>3/30/09</td>
+      <td>349900</td>
+      <td>3600090</td>
+      <td>Townhouse</td>
+      <td>3/1/09</td>
+      <td>369800</td>
+      <td>0.849724</td>
+      <td>411781.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>2</td>
+      <td>8</td>
+      <td>2008</td>
+      <td>0</td>
+      <td>0</td>
+      <td>170000</td>
+      <td>207000</td>
+      <td>98144</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>8/28/13</td>
+      <td>327500</td>
+      <td>3800004</td>
+      <td>Single Family</td>
+      <td>8/1/13</td>
+      <td>374300</td>
+      <td>0.860064</td>
+      <td>380785.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1961</td>
+      <td>0</td>
+      <td>0</td>
+      <td>165000</td>
+      <td>227000</td>
+      <td>98178</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>5/24/07</td>
+      <td>347000</td>
+      <td>3800009</td>
+      <td>Single Family</td>
+      <td>5/1/07</td>
+      <td>432100</td>
+      <td>0.992877</td>
+      <td>349489.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1963</td>
+      <td>0</td>
+      <td>0</td>
+      <td>115000</td>
+      <td>154000</td>
+      <td>98178</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>9/22/06</td>
+      <td>220400</td>
+      <td>6600055</td>
+      <td>Single Family</td>
+      <td>9/1/06</td>
+      <td>414800</td>
+      <td>0.953125</td>
+      <td>231239.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1930</td>
+      <td>0</td>
+      <td>3</td>
+      <td>90000</td>
+      <td>75000</td>
+      <td>98032</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>8/22/06</td>
+      <td>437500</td>
+      <td>7200080</td>
+      <td>Multiplex</td>
+      <td>8/1/06</td>
+      <td>411100</td>
+      <td>0.944623</td>
+      <td>463148.0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>2.00</td>
+      <td>4</td>
+      <td>6</td>
+      <td>1924</td>
+      <td>0</td>
+      <td>0</td>
+      <td>124000</td>
+      <td>116000</td>
+      <td>98055</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>10/16/14</td>
+      <td>150000</td>
+      <td>7200179</td>
+      <td>Single Family</td>
+      <td>10/1/14</td>
+      <td>407400</td>
+      <td>0.936121</td>
+      <td>160236.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1925</td>
+      <td>0</td>
+      <td>0</td>
+      <td>133000</td>
+      <td>73000</td>
+      <td>98055</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1/14/10</td>
+      <td>300000</td>
+      <td>7400054</td>
+      <td>Single Family</td>
+      <td>1/1/10</td>
+      <td>350800</td>
+      <td>0.806066</td>
+      <td>372178.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1958</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100000</td>
+      <td>172000</td>
+      <td>98118</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>6/26/08</td>
+      <td>292000</td>
+      <td>7400062</td>
+      <td>Single Family</td>
+      <td>6/1/08</td>
+      <td>403200</td>
+      <td>0.926471</td>
+      <td>315175.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1925</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100000</td>
+      <td>152000</td>
+      <td>98118</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>5/21/14</td>
+      <td>299800</td>
+      <td>7400062</td>
+      <td>Single Family</td>
+      <td>5/1/14</td>
+      <td>398100</td>
+      <td>0.914752</td>
+      <td>327739.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1925</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100000</td>
+      <td>152000</td>
+      <td>98118</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>6/13/13</td>
+      <td>370000</td>
+      <td>7600065</td>
+      <td>Townhouse</td>
+      <td>6/1/13</td>
+      <td>366100</td>
+      <td>0.841222</td>
+      <td>439836.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.25</td>
+      <td>3</td>
+      <td>9</td>
+      <td>2014</td>
+      <td>0</td>
+      <td>2</td>
+      <td>91000</td>
+      <td>439000</td>
+      <td>-1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>9/25/06</td>
+      <td>605000</td>
+      <td>7600093</td>
+      <td>Single Family</td>
+      <td>9/1/06</td>
+      <td>414800</td>
+      <td>0.953125</td>
+      <td>634754.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.75</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1901</td>
+      <td>0</td>
+      <td>0</td>
+      <td>261000</td>
+      <td>422000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>5/4/07</td>
+      <td>475000</td>
+      <td>7600136</td>
+      <td>Townhouse</td>
+      <td>5/1/07</td>
+      <td>432100</td>
+      <td>0.992877</td>
+      <td>478408.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.00</td>
+      <td>2</td>
+      <td>9</td>
+      <td>2007</td>
+      <td>0</td>
+      <td>0</td>
+      <td>91000</td>
+      <td>383000</td>
+      <td>-1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>2/24/07</td>
+      <td>425000</td>
+      <td>7600203</td>
+      <td>Single Family</td>
+      <td>2/1/07</td>
+      <td>427800</td>
+      <td>0.982996</td>
+      <td>432352.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1920</td>
+      <td>0</td>
+      <td>0</td>
+      <td>235000</td>
+      <td>373000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>3/26/08</td>
+      <td>357500</td>
+      <td>7600218</td>
+      <td>Townhouse</td>
+      <td>3/1/08</td>
+      <td>415100</td>
+      <td>0.953814</td>
+      <td>374811.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>2</td>
+      <td>8</td>
+      <td>2007</td>
+      <td>0</td>
+      <td>0</td>
+      <td>91000</td>
+      <td>352000</td>
+      <td>-1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>3/14/06</td>
+      <td>455000</td>
+      <td>9000210</td>
+      <td>Single Family</td>
+      <td>3/1/06</td>
+      <td>392100</td>
+      <td>0.900965</td>
+      <td>505014.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1919</td>
+      <td>0</td>
+      <td>0</td>
+      <td>333000</td>
+      <td>117000</td>
+      <td>98115</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>21</td>
+      <td>11/9/07</td>
+      <td>495000</td>
+      <td>10000060</td>
+      <td>Single Family</td>
+      <td>11/1/07</td>
+      <td>428400</td>
+      <td>0.984375</td>
+      <td>502857.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.25</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1909</td>
+      <td>0</td>
+      <td>0</td>
+      <td>212000</td>
+      <td>366000</td>
+      <td>98116</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22</td>
+      <td>6/5/13</td>
+      <td>279500</td>
+      <td>11000040</td>
+      <td>Single Family</td>
+      <td>6/1/13</td>
+      <td>366100</td>
+      <td>0.841222</td>
+      <td>332255.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>3</td>
+      <td>6</td>
+      <td>2000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>142000</td>
+      <td>189000</td>
+      <td>98001</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>23</td>
+      <td>3/20/08</td>
+      <td>400000</td>
+      <td>11000041</td>
+      <td>Single Family</td>
+      <td>3/1/08</td>
+      <td>415100</td>
+      <td>0.953814</td>
+      <td>419369.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.00</td>
+      <td>4</td>
+      <td>8</td>
+      <td>1960</td>
+      <td>0</td>
+      <td>0</td>
+      <td>139000</td>
+      <td>200000</td>
+      <td>98001</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>24</td>
+      <td>11/21/07</td>
+      <td>530500</td>
+      <td>11200070</td>
+      <td>Single Family</td>
+      <td>11/1/07</td>
+      <td>428400</td>
+      <td>0.984375</td>
+      <td>538921.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1998</td>
+      <td>0</td>
+      <td>0</td>
+      <td>269000</td>
+      <td>209000</td>
+      <td>98007</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>25</td>
+      <td>8/28/06</td>
+      <td>490000</td>
+      <td>11200370</td>
+      <td>Single Family</td>
+      <td>8/1/06</td>
+      <td>411100</td>
+      <td>0.944623</td>
+      <td>518725.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1998</td>
+      <td>0</td>
+      <td>0</td>
+      <td>269000</td>
+      <td>216000</td>
+      <td>98007</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>26</td>
+      <td>9/12/12</td>
+      <td>608000</td>
+      <td>11500050</td>
+      <td>Single Family</td>
+      <td>9/1/12</td>
+      <td>329600</td>
+      <td>0.757353</td>
+      <td>802796.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>3</td>
+      <td>10</td>
+      <td>1990</td>
+      <td>0</td>
+      <td>1</td>
+      <td>255000</td>
+      <td>480000</td>
+      <td>98052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>27</td>
+      <td>9/2/08</td>
+      <td>630000</td>
+      <td>11500270</td>
+      <td>Single Family</td>
+      <td>9/1/08</td>
+      <td>394900</td>
+      <td>0.907399</td>
+      <td>694292.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>3</td>
+      <td>10</td>
+      <td>1992</td>
+      <td>0</td>
+      <td>0</td>
+      <td>269000</td>
+      <td>432000</td>
+      <td>98052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>28</td>
+      <td>4/21/08</td>
+      <td>635000</td>
+      <td>11500510</td>
+      <td>Single Family</td>
+      <td>4/1/08</td>
+      <td>411700</td>
+      <td>0.946002</td>
+      <td>671246.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>4</td>
+      <td>10</td>
+      <td>1990</td>
+      <td>0</td>
+      <td>1</td>
+      <td>255000</td>
+      <td>416000</td>
+      <td>98052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>29</td>
+      <td>8/25/09</td>
+      <td>520000</td>
+      <td>11500510</td>
+      <td>Single Family</td>
+      <td>8/1/09</td>
+      <td>352600</td>
+      <td>0.810202</td>
+      <td>641815.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>4</td>
+      <td>10</td>
+      <td>1990</td>
+      <td>0</td>
+      <td>1</td>
+      <td>255000</td>
+      <td>416000</td>
+      <td>98052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>30</td>
+      <td>12/17/12</td>
+      <td>730000</td>
+      <td>11500890</td>
+      <td>Single Family</td>
+      <td>12/1/12</td>
+      <td>339400</td>
+      <td>0.779871</td>
+      <td>936052.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>3</td>
+      <td>10</td>
+      <td>1991</td>
+      <td>0</td>
+      <td>0</td>
+      <td>269000</td>
+      <td>514000</td>
+      <td>98052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>27033</th>
+      <td>27034</td>
+      <td>8/23/06</td>
+      <td>645000</td>
+      <td>9839300545</td>
+      <td>Single Family</td>
+      <td>8/1/06</td>
+      <td>411100</td>
+      <td>0.944623</td>
+      <td>682812.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.00</td>
+      <td>2</td>
+      <td>8</td>
+      <td>1921</td>
+      <td>0</td>
+      <td>0</td>
+      <td>286000</td>
+      <td>430000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27034</th>
+      <td>27035</td>
+      <td>4/11/07</td>
+      <td>687500</td>
+      <td>9839300755</td>
+      <td>Single Family</td>
+      <td>4/1/07</td>
+      <td>430900</td>
+      <td>0.990119</td>
+      <td>694361.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1910</td>
+      <td>0</td>
+      <td>0</td>
+      <td>243000</td>
+      <td>576000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27035</th>
+      <td>27036</td>
+      <td>6/14/06</td>
+      <td>419950</td>
+      <td>9839300765</td>
+      <td>Single Family</td>
+      <td>6/1/06</td>
+      <td>404400</td>
+      <td>0.929228</td>
+      <td>451934.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>2</td>
+      <td>7</td>
+      <td>1919</td>
+      <td>0</td>
+      <td>0</td>
+      <td>279000</td>
+      <td>248000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27036</th>
+      <td>27037</td>
+      <td>12/20/10</td>
+      <td>437000</td>
+      <td>9839300800</td>
+      <td>Single Family</td>
+      <td>12/1/10</td>
+      <td>330600</td>
+      <td>0.759651</td>
+      <td>575264.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.75</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1918</td>
+      <td>2010</td>
+      <td>2</td>
+      <td>225000</td>
+      <td>525000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27037</th>
+      <td>27038</td>
+      <td>5/22/07</td>
+      <td>525000</td>
+      <td>9839300830</td>
+      <td>Single Family</td>
+      <td>5/1/07</td>
+      <td>432100</td>
+      <td>0.992877</td>
+      <td>528766.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1908</td>
+      <td>0</td>
+      <td>0</td>
+      <td>252000</td>
+      <td>326000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27038</th>
+      <td>27039</td>
+      <td>7/21/10</td>
+      <td>305000</td>
+      <td>9839300875</td>
+      <td>Single Family</td>
+      <td>7/1/10</td>
+      <td>342800</td>
+      <td>0.787684</td>
+      <td>387211.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1906</td>
+      <td>0</td>
+      <td>0</td>
+      <td>252000</td>
+      <td>440000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27039</th>
+      <td>27040</td>
+      <td>12/17/10</td>
+      <td>585000</td>
+      <td>9839300875</td>
+      <td>Single Family</td>
+      <td>12/1/10</td>
+      <td>330600</td>
+      <td>0.759651</td>
+      <td>770091.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1906</td>
+      <td>0</td>
+      <td>0</td>
+      <td>252000</td>
+      <td>440000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27040</th>
+      <td>27041</td>
+      <td>4/17/08</td>
+      <td>590000</td>
+      <td>9839301055</td>
+      <td>Single Family</td>
+      <td>4/1/08</td>
+      <td>411700</td>
+      <td>0.946002</td>
+      <td>623677.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1906</td>
+      <td>0</td>
+      <td>0</td>
+      <td>266000</td>
+      <td>322000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27041</th>
+      <td>27042</td>
+      <td>5/28/13</td>
+      <td>607500</td>
+      <td>9839301055</td>
+      <td>Single Family</td>
+      <td>5/1/13</td>
+      <td>360700</td>
+      <td>0.828814</td>
+      <td>732975.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1906</td>
+      <td>0</td>
+      <td>0</td>
+      <td>266000</td>
+      <td>322000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27042</th>
+      <td>27043</td>
+      <td>2/22/07</td>
+      <td>757000</td>
+      <td>9839301170</td>
+      <td>Single Family</td>
+      <td>2/1/07</td>
+      <td>427800</td>
+      <td>0.982996</td>
+      <td>770094.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.00</td>
+      <td>4</td>
+      <td>8</td>
+      <td>1901</td>
+      <td>1960</td>
+      <td>0</td>
+      <td>266000</td>
+      <td>831000</td>
+      <td>98122</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27043</th>
+      <td>27044</td>
+      <td>6/27/11</td>
+      <td>243500</td>
+      <td>9842300035</td>
+      <td>Single Family</td>
+      <td>6/1/11</td>
+      <td>315500</td>
+      <td>0.724954</td>
+      <td>335883.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1964</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>200000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27044</th>
+      <td>27045</td>
+      <td>1/26/07</td>
+      <td>397950</td>
+      <td>9842300087</td>
+      <td>Single Family</td>
+      <td>1/1/07</td>
+      <td>425600</td>
+      <td>0.977941</td>
+      <td>406926.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>4.00</td>
+      <td>7</td>
+      <td>7</td>
+      <td>1942</td>
+      <td>2007</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>445000</td>
+      <td>98136</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27045</th>
+      <td>27046</td>
+      <td>12/1/10</td>
+      <td>430000</td>
+      <td>9842300090</td>
+      <td>Single Family</td>
+      <td>12/1/10</td>
+      <td>330600</td>
+      <td>0.759651</td>
+      <td>566050.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1955</td>
+      <td>2010</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>281000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27046</th>
+      <td>27047</td>
+      <td>3/1/07</td>
+      <td>400000</td>
+      <td>9842300100</td>
+      <td>Single Family</td>
+      <td>3/1/07</td>
+      <td>429600</td>
+      <td>0.987132</td>
+      <td>405214.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>7</td>
+      <td>1944</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>116000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27047</th>
+      <td>27048</td>
+      <td>3/31/06</td>
+      <td>329950</td>
+      <td>9842300118</td>
+      <td>Single Family</td>
+      <td>3/1/06</td>
+      <td>392100</td>
+      <td>0.900965</td>
+      <td>366218.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1943</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>110000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27048</th>
+      <td>27049</td>
+      <td>11/15/06</td>
+      <td>450000</td>
+      <td>9842300150</td>
+      <td>Single Family</td>
+      <td>11/1/06</td>
+      <td>421200</td>
+      <td>0.967831</td>
+      <td>464957.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.50</td>
+      <td>5</td>
+      <td>7</td>
+      <td>1963</td>
+      <td>2007</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>352000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27049</th>
+      <td>27050</td>
+      <td>1/8/08</td>
+      <td>454500</td>
+      <td>9842300156</td>
+      <td>Single Family</td>
+      <td>1/1/08</td>
+      <td>421900</td>
+      <td>0.969439</td>
+      <td>468828.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1957</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>259000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27050</th>
+      <td>27051</td>
+      <td>4/23/09</td>
+      <td>396600</td>
+      <td>9842300330</td>
+      <td>Single Family</td>
+      <td>4/1/09</td>
+      <td>365000</td>
+      <td>0.838695</td>
+      <td>472878.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1944</td>
+      <td>0</td>
+      <td>1</td>
+      <td>192000</td>
+      <td>264000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27051</th>
+      <td>27052</td>
+      <td>8/24/12</td>
+      <td>366000</td>
+      <td>9842300360</td>
+      <td>Single Family</td>
+      <td>8/1/12</td>
+      <td>327500</td>
+      <td>0.752528</td>
+      <td>486361.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1954</td>
+      <td>0</td>
+      <td>1</td>
+      <td>183000</td>
+      <td>209000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27052</th>
+      <td>27053</td>
+      <td>5/2/06</td>
+      <td>470000</td>
+      <td>9842300440</td>
+      <td>Single Family</td>
+      <td>5/1/06</td>
+      <td>400600</td>
+      <td>0.920496</td>
+      <td>510594.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1954</td>
+      <td>0</td>
+      <td>0</td>
+      <td>201000</td>
+      <td>286000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27053</th>
+      <td>27054</td>
+      <td>1/11/08</td>
+      <td>349500</td>
+      <td>9842300441</td>
+      <td>Single Family</td>
+      <td>1/1/08</td>
+      <td>421900</td>
+      <td>0.969439</td>
+      <td>360518.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>3.25</td>
+      <td>4</td>
+      <td>8</td>
+      <td>1925</td>
+      <td>1972</td>
+      <td>1</td>
+      <td>195000</td>
+      <td>403000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27054</th>
+      <td>27055</td>
+      <td>3/2/06</td>
+      <td>379000</td>
+      <td>9842300550</td>
+      <td>Single Family</td>
+      <td>3/1/06</td>
+      <td>392100</td>
+      <td>0.900965</td>
+      <td>420660.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>7</td>
+      <td>1950</td>
+      <td>0</td>
+      <td>0</td>
+      <td>201000</td>
+      <td>172000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27055</th>
+      <td>27056</td>
+      <td>4/2/12</td>
+      <td>167500</td>
+      <td>9842300695</td>
+      <td>Single Family</td>
+      <td>4/1/12</td>
+      <td>315200</td>
+      <td>0.724265</td>
+      <td>231269.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1942</td>
+      <td>0</td>
+      <td>0</td>
+      <td>194000</td>
+      <td>45000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27056</th>
+      <td>27057</td>
+      <td>4/8/11</td>
+      <td>325000</td>
+      <td>9842300710</td>
+      <td>Single Family</td>
+      <td>4/1/11</td>
+      <td>318700</td>
+      <td>0.732307</td>
+      <td>443803.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1951</td>
+      <td>0</td>
+      <td>0</td>
+      <td>201000</td>
+      <td>172000</td>
+      <td>98126</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27057</th>
+      <td>27058</td>
+      <td>9/28/07</td>
+      <td>1580000</td>
+      <td>9845500010</td>
+      <td>Single Family</td>
+      <td>9/1/07</td>
+      <td>433500</td>
+      <td>0.996094</td>
+      <td>1586196.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>4.50</td>
+      <td>4</td>
+      <td>11</td>
+      <td>2000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>703000</td>
+      <td>951000</td>
+      <td>98040</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27058</th>
+      <td>27059</td>
+      <td>10/31/12</td>
+      <td>374000</td>
+      <td>9895000030</td>
+      <td>Townhouse</td>
+      <td>10/1/12</td>
+      <td>332400</td>
+      <td>0.763787</td>
+      <td>489665.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>2</td>
+      <td>9</td>
+      <td>2011</td>
+      <td>0</td>
+      <td>0</td>
+      <td>147000</td>
+      <td>269000</td>
+      <td>-1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27059</th>
+      <td>27060</td>
+      <td>12/7/12</td>
+      <td>374000</td>
+      <td>9895000040</td>
+      <td>Townhouse</td>
+      <td>12/1/12</td>
+      <td>339400</td>
+      <td>0.779871</td>
+      <td>479566.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.75</td>
+      <td>2</td>
+      <td>9</td>
+      <td>2011</td>
+      <td>0</td>
+      <td>0</td>
+      <td>147000</td>
+      <td>269000</td>
+      <td>-1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>27060</th>
+      <td>27061</td>
+      <td>7/9/12</td>
+      <td>165000</td>
+      <td>9899200010</td>
+      <td>Single Family</td>
+      <td>7/1/12</td>
+      <td>325300</td>
+      <td>0.747472</td>
+      <td>220744.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.00</td>
+      <td>4</td>
+      <td>6</td>
+      <td>1971</td>
+      <td>0</td>
+      <td>0</td>
+      <td>92000</td>
+      <td>130000</td>
+      <td>98055</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27061</th>
+      <td>27062</td>
+      <td>5/26/06</td>
+      <td>315000</td>
+      <td>9900000355</td>
+      <td>Single Family</td>
+      <td>5/1/06</td>
+      <td>400600</td>
+      <td>0.920496</td>
+      <td>342207.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2.00</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1939</td>
+      <td>0</td>
+      <td>0</td>
+      <td>103000</td>
+      <td>212000</td>
+      <td>98166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27062</th>
+      <td>27063</td>
+      <td>1/9/07</td>
+      <td>465000</td>
+      <td>9906000035</td>
+      <td>Single Family</td>
+      <td>1/1/07</td>
+      <td>425600</td>
+      <td>0.977941</td>
+      <td>475489.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.50</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1928</td>
+      <td>0</td>
+      <td>0</td>
+      <td>311000</td>
+      <td>268000</td>
+      <td>98103</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>27063 rows × 23 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11839,20 +13368,558 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: select only &quot;SalePrice&quot;, &quot;Bedrooms&quot;, &quot;Bathrooms&quot;, &quot;SqFtTotLiving&quot;, &quot;SqFtLot&quot;</span>
-<span class="n">housePrices_small</span> <span class="o">=</span> <span class="n">housePrices</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">)</span>
-<span class="n">housePrices_small</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#housePrices_small = housePrices[[&quot;???&quot;, &quot;???&quot;, &quot;???&quot;, &quot;???&quot;, &quot;???&quot;]]</span>
+<span class="n">housePrices_small</span> <span class="o">=</span> <span class="n">housePrices</span><span class="p">[[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bedrooms&quot;</span><span class="p">,</span> <span class="s2">&quot;Bathrooms&quot;</span><span class="p">,</span> <span class="s2">&quot;SqFtTotLiving&quot;</span><span class="p">,</span> <span class="s2">&quot;SqFtLot&quot;</span><span class="p">]]</span>
+
+
+<span class="n">housePrices_small</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SalePrice</th>
+      <th>Bedrooms</th>
+      <th>Bathrooms</th>
+      <th>SqFtTotLiving</th>
+      <th>SqFtLot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>280000</td>
+      <td>6</td>
+      <td>3.00</td>
+      <td>2400</td>
+      <td>9373</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000000</td>
+      <td>4</td>
+      <td>3.75</td>
+      <td>3764</td>
+      <td>20156</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>745000</td>
+      <td>4</td>
+      <td>1.75</td>
+      <td>2060</td>
+      <td>26036</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>425000</td>
+      <td>5</td>
+      <td>3.75</td>
+      <td>3200</td>
+      <td>8618</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>240000</td>
+      <td>4</td>
+      <td>1.75</td>
+      <td>1720</td>
+      <td>8620</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>349900</td>
+      <td>2</td>
+      <td>1.50</td>
+      <td>930</td>
+      <td>1012</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>327500</td>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1750</td>
+      <td>34465</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>347000</td>
+      <td>4</td>
+      <td>1.75</td>
+      <td>1860</td>
+      <td>14659</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>220400</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>990</td>
+      <td>5324</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>437500</td>
+      <td>4</td>
+      <td>2.00</td>
+      <td>1980</td>
+      <td>10585</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>150000</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>840</td>
+      <td>12750</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>300000</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1750</td>
+      <td>5200</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>292000</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>790</td>
+      <td>5240</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>299800</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>790</td>
+      <td>5240</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>370000</td>
+      <td>3</td>
+      <td>2.25</td>
+      <td>1530</td>
+      <td>1245</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>605000</td>
+      <td>3</td>
+      <td>2.75</td>
+      <td>2120</td>
+      <td>7320</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>475000</td>
+      <td>2</td>
+      <td>2.00</td>
+      <td>1130</td>
+      <td>1148</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>425000</td>
+      <td>4</td>
+      <td>1.50</td>
+      <td>2620</td>
+      <td>3485</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>357500</td>
+      <td>2</td>
+      <td>1.50</td>
+      <td>1250</td>
+      <td>924</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>455000</td>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1500</td>
+      <td>5253</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>495000</td>
+      <td>3</td>
+      <td>2.25</td>
+      <td>2070</td>
+      <td>4600</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>279500</td>
+      <td>3</td>
+      <td>3.00</td>
+      <td>3020</td>
+      <td>27229</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>400000</td>
+      <td>4</td>
+      <td>2.00</td>
+      <td>2370</td>
+      <td>24034</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>530500</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1530</td>
+      <td>3296</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>490000</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1530</td>
+      <td>3696</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>608000</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>2780</td>
+      <td>13349</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>630000</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>2420</td>
+      <td>8186</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>635000</td>
+      <td>4</td>
+      <td>2.50</td>
+      <td>2280</td>
+      <td>9093</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>520000</td>
+      <td>4</td>
+      <td>2.50</td>
+      <td>2280</td>
+      <td>9093</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>730000</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>3130</td>
+      <td>8750</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>27033</th>
+      <td>645000</td>
+      <td>2</td>
+      <td>2.00</td>
+      <td>1270</td>
+      <td>5500</td>
+    </tr>
+    <tr>
+      <th>27034</th>
+      <td>687500</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1890</td>
+      <td>2496</td>
+    </tr>
+    <tr>
+      <th>27035</th>
+      <td>419950</td>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1270</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27036</th>
+      <td>437000</td>
+      <td>3</td>
+      <td>2.75</td>
+      <td>3040</td>
+      <td>2880</td>
+    </tr>
+    <tr>
+      <th>27037</th>
+      <td>525000</td>
+      <td>4</td>
+      <td>1.50</td>
+      <td>1300</td>
+      <td>4080</td>
+    </tr>
+    <tr>
+      <th>27038</th>
+      <td>305000</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1700</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27039</th>
+      <td>585000</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1700</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27040</th>
+      <td>590000</td>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1490</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27041</th>
+      <td>607500</td>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1490</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27042</th>
+      <td>757000</td>
+      <td>4</td>
+      <td>3.00</td>
+      <td>3920</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27043</th>
+      <td>243500</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1120</td>
+      <td>4166</td>
+    </tr>
+    <tr>
+      <th>27044</th>
+      <td>397950</td>
+      <td>7</td>
+      <td>4.00</td>
+      <td>2710</td>
+      <td>4135</td>
+    </tr>
+    <tr>
+      <th>27045</th>
+      <td>430000</td>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1460</td>
+      <td>4170</td>
+    </tr>
+    <tr>
+      <th>27046</th>
+      <td>400000</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>720</td>
+      <td>4166</td>
+    </tr>
+    <tr>
+      <th>27047</th>
+      <td>329950</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>650</td>
+      <td>4155</td>
+    </tr>
+    <tr>
+      <th>27048</th>
+      <td>450000</td>
+      <td>5</td>
+      <td>2.50</td>
+      <td>2610</td>
+      <td>4353</td>
+    </tr>
+    <tr>
+      <th>27049</th>
+      <td>454500</td>
+      <td>3</td>
+      <td>1.75</td>
+      <td>2000</td>
+      <td>4186</td>
+    </tr>
+    <tr>
+      <th>27050</th>
+      <td>396600</td>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1890</td>
+      <td>5705</td>
+    </tr>
+    <tr>
+      <th>27051</th>
+      <td>366000</td>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1650</td>
+      <td>4163</td>
+    </tr>
+    <tr>
+      <th>27052</th>
+      <td>470000</td>
+      <td>4</td>
+      <td>1.50</td>
+      <td>1950</td>
+      <td>5019</td>
+    </tr>
+    <tr>
+      <th>27053</th>
+      <td>349500</td>
+      <td>4</td>
+      <td>3.25</td>
+      <td>2510</td>
+      <td>6021</td>
+    </tr>
+    <tr>
+      <th>27054</th>
+      <td>379000</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>1600</td>
+      <td>5150</td>
+    </tr>
+    <tr>
+      <th>27055</th>
+      <td>167500</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>650</td>
+      <td>4134</td>
+    </tr>
+    <tr>
+      <th>27056</th>
+      <td>325000</td>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1480</td>
+      <td>5468</td>
+    </tr>
+    <tr>
+      <th>27057</th>
+      <td>1580000</td>
+      <td>4</td>
+      <td>4.50</td>
+      <td>4720</td>
+      <td>23914</td>
+    </tr>
+    <tr>
+      <th>27058</th>
+      <td>374000</td>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1410</td>
+      <td>1161</td>
+    </tr>
+    <tr>
+      <th>27059</th>
+      <td>374000</td>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1410</td>
+      <td>1005</td>
+    </tr>
+    <tr>
+      <th>27060</th>
+      <td>165000</td>
+      <td>4</td>
+      <td>1.00</td>
+      <td>1070</td>
+      <td>11170</td>
+    </tr>
+    <tr>
+      <th>27061</th>
+      <td>315000</td>
+      <td>3</td>
+      <td>2.00</td>
+      <td>1345</td>
+      <td>6223</td>
+    </tr>
+    <tr>
+      <th>27062</th>
+      <td>465000</td>
+      <td>3</td>
+      <td>1.50</td>
+      <td>790</td>
+      <td>4400</td>
+    </tr>
+  </tbody>
+</table>
+<p>27063 rows × 5 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11865,22 +13932,491 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="err">???</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">housePrices_small</span><span class="p">)</span>
-
-<span class="n">featureVector</span> <span class="o">=</span> <span class="n">featureVector</span><span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">housePrices_small</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bedrooms</th>
+      <th>Bathrooms</th>
+      <th>SqFtTotLiving</th>
+      <th>SqFtLot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6</td>
+      <td>3.00</td>
+      <td>2400</td>
+      <td>9373</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>3.75</td>
+      <td>3764</td>
+      <td>20156</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>1.75</td>
+      <td>2060</td>
+      <td>26036</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5</td>
+      <td>3.75</td>
+      <td>3200</td>
+      <td>8618</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>1.75</td>
+      <td>1720</td>
+      <td>8620</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>1.50</td>
+      <td>930</td>
+      <td>1012</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1750</td>
+      <td>34465</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4</td>
+      <td>1.75</td>
+      <td>1860</td>
+      <td>14659</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>990</td>
+      <td>5324</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4</td>
+      <td>2.00</td>
+      <td>1980</td>
+      <td>10585</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>840</td>
+      <td>12750</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1750</td>
+      <td>5200</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>790</td>
+      <td>5240</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>790</td>
+      <td>5240</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3</td>
+      <td>2.25</td>
+      <td>1530</td>
+      <td>1245</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>3</td>
+      <td>2.75</td>
+      <td>2120</td>
+      <td>7320</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2</td>
+      <td>2.00</td>
+      <td>1130</td>
+      <td>1148</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>4</td>
+      <td>1.50</td>
+      <td>2620</td>
+      <td>3485</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2</td>
+      <td>1.50</td>
+      <td>1250</td>
+      <td>924</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1500</td>
+      <td>5253</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>3</td>
+      <td>2.25</td>
+      <td>2070</td>
+      <td>4600</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>3</td>
+      <td>3.00</td>
+      <td>3020</td>
+      <td>27229</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>4</td>
+      <td>2.00</td>
+      <td>2370</td>
+      <td>24034</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1530</td>
+      <td>3296</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1530</td>
+      <td>3696</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>3</td>
+      <td>2.50</td>
+      <td>2780</td>
+      <td>13349</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>3</td>
+      <td>2.50</td>
+      <td>2420</td>
+      <td>8186</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>4</td>
+      <td>2.50</td>
+      <td>2280</td>
+      <td>9093</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>4</td>
+      <td>2.50</td>
+      <td>2280</td>
+      <td>9093</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>3</td>
+      <td>2.50</td>
+      <td>3130</td>
+      <td>8750</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>27033</th>
+      <td>2</td>
+      <td>2.00</td>
+      <td>1270</td>
+      <td>5500</td>
+    </tr>
+    <tr>
+      <th>27034</th>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1890</td>
+      <td>2496</td>
+    </tr>
+    <tr>
+      <th>27035</th>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1270</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27036</th>
+      <td>3</td>
+      <td>2.75</td>
+      <td>3040</td>
+      <td>2880</td>
+    </tr>
+    <tr>
+      <th>27037</th>
+      <td>4</td>
+      <td>1.50</td>
+      <td>1300</td>
+      <td>4080</td>
+    </tr>
+    <tr>
+      <th>27038</th>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1700</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27039</th>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1700</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27040</th>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1490</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27041</th>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1490</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27042</th>
+      <td>4</td>
+      <td>3.00</td>
+      <td>3920</td>
+      <td>4400</td>
+    </tr>
+    <tr>
+      <th>27043</th>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1120</td>
+      <td>4166</td>
+    </tr>
+    <tr>
+      <th>27044</th>
+      <td>7</td>
+      <td>4.00</td>
+      <td>2710</td>
+      <td>4135</td>
+    </tr>
+    <tr>
+      <th>27045</th>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1460</td>
+      <td>4170</td>
+    </tr>
+    <tr>
+      <th>27046</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>720</td>
+      <td>4166</td>
+    </tr>
+    <tr>
+      <th>27047</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>650</td>
+      <td>4155</td>
+    </tr>
+    <tr>
+      <th>27048</th>
+      <td>5</td>
+      <td>2.50</td>
+      <td>2610</td>
+      <td>4353</td>
+    </tr>
+    <tr>
+      <th>27049</th>
+      <td>3</td>
+      <td>1.75</td>
+      <td>2000</td>
+      <td>4186</td>
+    </tr>
+    <tr>
+      <th>27050</th>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1890</td>
+      <td>5705</td>
+    </tr>
+    <tr>
+      <th>27051</th>
+      <td>3</td>
+      <td>1.50</td>
+      <td>1650</td>
+      <td>4163</td>
+    </tr>
+    <tr>
+      <th>27052</th>
+      <td>4</td>
+      <td>1.50</td>
+      <td>1950</td>
+      <td>5019</td>
+    </tr>
+    <tr>
+      <th>27053</th>
+      <td>4</td>
+      <td>3.25</td>
+      <td>2510</td>
+      <td>6021</td>
+    </tr>
+    <tr>
+      <th>27054</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>1600</td>
+      <td>5150</td>
+    </tr>
+    <tr>
+      <th>27055</th>
+      <td>2</td>
+      <td>1.00</td>
+      <td>650</td>
+      <td>4134</td>
+    </tr>
+    <tr>
+      <th>27056</th>
+      <td>3</td>
+      <td>1.75</td>
+      <td>1480</td>
+      <td>5468</td>
+    </tr>
+    <tr>
+      <th>27057</th>
+      <td>4</td>
+      <td>4.50</td>
+      <td>4720</td>
+      <td>23914</td>
+    </tr>
+    <tr>
+      <th>27058</th>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1410</td>
+      <td>1161</td>
+    </tr>
+    <tr>
+      <th>27059</th>
+      <td>2</td>
+      <td>1.75</td>
+      <td>1410</td>
+      <td>1005</td>
+    </tr>
+    <tr>
+      <th>27060</th>
+      <td>4</td>
+      <td>1.00</td>
+      <td>1070</td>
+      <td>11170</td>
+    </tr>
+    <tr>
+      <th>27061</th>
+      <td>3</td>
+      <td>2.00</td>
+      <td>1345</td>
+      <td>6223</td>
+    </tr>
+    <tr>
+      <th>27062</th>
+      <td>3</td>
+      <td>1.50</td>
+      <td>790</td>
+      <td>4400</td>
+    </tr>
+  </tbody>
+</table>
+<p>27063 rows × 4 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11891,23 +14427,41 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Step 3: Run the Linear Regression Model</span>
-<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="err">???</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="err">???</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="err">???</span><span class="p">)</span>
-<span class="n">lrModel</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">featureVector</span><span class="p">)</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lrModel</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">housePrices_small</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:],</span> <span class="n">housePrices_small</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficents:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">intercept_</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Coefficients: [ -6.52117361e+04   1.62741914e+04   2.77848047e+02  -7.45705406e-02]
+Intercept: 106303.306115
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11918,14 +14472,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numIterations: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">totalIterations</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objectiveHistory: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">objectiveHistory</span><span class="p">))</span>
-<span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">residuals</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">rootMeanSquaredError</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;r2: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">r2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
 </pre></div>
 
 </div>
@@ -11933,7 +14483,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11945,7 +14496,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a Pandas dataframe</span>
@@ -11954,10 +14505,6 @@ div#notebook {
                          <span class="s1">&#39;SqFtTotLiving&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4400</span><span class="p">,</span> <span class="mi">1800</span><span class="p">,</span> <span class="mi">1550</span><span class="p">],</span>
                          <span class="s1">&#39;SqFtLot&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">]</span>
              <span class="p">})</span>
-
-<span class="n">new_data_spark</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
-<span class="n">new_featureVector</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_data_spark</span><span class="p">)</span>  <span class="c1">#run VectorAssembler again to create features.</span>
-<span class="n">new_featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11965,23 +14512,55 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Step-4:-Run-on-some-prediction-data">Step 4: Run on some prediction data<a class="anchor-link" href="#Step-4:-Run-on-some-prediction-data">&#182;</a></h2><p>Lets see the predicted output.</p>
-<p><strong>=&gt;TODO: transform dataframe with new feature vector to get predictions </strong></p>
+<p><strong>=&gt;TODO: transform dataframe with new dataframe (.values) to get predictions </strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predicted_prices</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="err">???</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">predicted_prices</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[26]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 2770191.4170882 ,  1413808.41744747,  1152310.68947982])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predicted_prices</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="err">???</span><span class="p">)</span>
-<span class="n">predicted_prices</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>

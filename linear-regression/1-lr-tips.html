@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,34 +11773,34 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <link rel='stylesheet' href='../assets/css/main.css'/>
 
 <p><a href="../README.md">&lt;&lt; back to main index</a></p>
-<h1 id="Linear-Regression-in-PySpark-(Demo)">Linear Regression in PySpark (Demo)<a class="anchor-link" href="#Linear-Regression-in-PySpark-(Demo)">&#182;</a></h1><h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><p>Instructor to demo this on screen.</p>
+<h1 id="Linear-Regression-in-using-NumPy-and-SciPy">Linear Regression in using NumPy and SciPy<a class="anchor-link" href="#Linear-Regression-in-using-NumPy-and-SciPy">&#182;</a></h1><h3 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h3><p>Instructor to demo this on screen.</p>
 <h3 id="Builds-on">Builds on<a class="anchor-link" href="#Builds-on">&#182;</a></h3><p>None</p>
 <h3 id="Run-time">Run time<a class="anchor-link" href="#Run-time">&#182;</a></h3><p>approx. 20-30 minutes</p>
-<h3 id="Notes">Notes<a class="anchor-link" href="#Notes">&#182;</a></h3><p>PySpark has a class called Linear Regression that can be used to do simple linear regression models.</p>
+<h3 id="Notes">Notes<a class="anchor-link" href="#Notes">&#182;</a></h3><p>We can do linear regression with ordinary.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.regression</span> <span class="k">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">VectorAssembler</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spark UI running on http://YOURIPADDRESS:&#39;</span> <span class="o">+</span> <span class="n">sc</span><span class="o">.</span><span class="n">uiWebUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -11806,7 +11808,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11815,7 +11818,8 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11872,18 +11876,18 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-1:-Let's-create-a-Pandas-dataframe-with-the-data">Step 1: Let's create a Pandas dataframe with the data<a class="anchor-link" href="#Step-1:-Let's-create-a-Pandas-dataframe-with-the-data">&#182;</a></h2><p>Note that pandas dataframes are not the same as spark dataframes.  However, Pandas dataframes are ubiquitous in python (for small datasets) and are a nifty way to ensure that we have our data's schema match perfectly.</p>
-
+<h2 id="Step-1:-Let's-create-a-Pandas-dataframe-with-the-data">Step 1: Let's create a Pandas dataframe with the data<a class="anchor-link" href="#Step-1:-Let's-create-a-Pandas-dataframe-with-the-data">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tip_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;bill&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">50.00</span><span class="p">,</span> <span class="mf">30.00</span><span class="p">,</span> <span class="mf">60.00</span><span class="p">,</span> <span class="mf">40.00</span><span class="p">,</span> <span class="mf">65.00</span><span class="p">,</span> <span class="mf">20.00</span><span class="p">,</span> <span class="mf">10.00</span><span class="p">,</span> <span class="mf">15.00</span><span class="p">,</span> <span class="mf">25.00</span><span class="p">,</span> <span class="mf">35.00</span><span class="p">],</span>
@@ -11897,12 +11901,105 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bill</th>
+      <th>tip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>50.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>30.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60.0</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>65.0</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>20.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>15.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>25.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>35.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-2:-Let's-do-a-quick-plot-of-the-data">Step 2: Let's do a quick plot of the data<a class="anchor-link" href="#Step-2:-Let's-do-a-quick-plot-of-the-data">&#182;</a></h2><p>Let us use matplotlib to do a quick scatter plot of the data. Note that this is not a Spark dataframe, this is using the pandas dataframe.</p>
+<h2 id="Step-2:-Let's-do-a-quick-plot-of-the-data">Step 2: Let's do a quick plot of the data<a class="anchor-link" href="#Step-2:-Let's-do-a-quick-plot-of-the-data">&#182;</a></h2><p>Let us use matplotlib to do a quick scatter plot of the data.</p>
 <p><strong>=&gt;TODO: plot the bill (X-axis), versus the tip (Y-axis)</strong></p>
 
 </div>
@@ -11910,10 +12007,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="err">???</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="err">???</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -11923,121 +12020,678 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-3:-Create-a-Spark-Dataframe">Step 3: Create a Spark Dataframe<a class="anchor-link" href="#Step-3:-Create-a-Spark-Dataframe">&#182;</a></h2><p>Let's now take our pandas dataframe and make a spark dataframe out of it.</p>
-<p><strong>=&gt;TODO: load the pandas dataframe tip_data into a spark dataframe spark_tips </strong></p>
+<h2 id="Step-3:-Run-Linear-Regression-in-plain-SciPy">Step 3: Run Linear Regression in plain SciPy<a class="anchor-link" href="#Step-3:-Run-Linear-Regression-in-plain-SciPy">&#182;</a></h2><p>Let's run our linear regression. We will do this with the scipy.stats.linregres</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">spark_tips</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="err">???</span><span class="p">)</span>
-<span class="n">spark_tips</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gradient</span><span class="p">,</span><span class="n">intercept</span><span class="p">,</span><span class="n">r_value</span><span class="p">,</span><span class="n">p_value</span><span class="p">,</span><span class="n">std_err</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span><span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gradient and intercept&quot;</span><span class="p">,</span><span class="n">gradient</span><span class="p">,</span><span class="n">intercept</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R-squared&quot;</span><span class="p">,</span><span class="n">r_value</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p-value&quot;</span><span class="p">,</span><span class="n">p_value</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Gradient and intercept 0.242857142857 -1.4
+R-squared 0.906714076553
+p-value 2.15282168529e-05
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-4:-Create-a-Features-column-with-the-Vector">Step 4: Create a Features column with the Vector<a class="anchor-link" href="#Step-4:-Create-a-Features-column-with-the-Vector">&#182;</a></h2><p>We need to create a feature vector here.  You might wonder why we need a "vector" after all there's only one variable: "bill."  Nonetheless, we still need the dataframe to have a column called "features" of type Vector Double).</p>
-<p>Luckily, there's a handy class called VectorAssembler that does this for us.</p>
-<p><strong>=&gt;TODO: build a vector from the input column "bill"</strong></p>
+<h2 id="Step-4:-Run-Linear-Regression-in-OLR">Step 4: Run Linear Regression in OLR<a class="anchor-link" href="#Step-4:-Run-Linear-Regression-in-OLR">&#182;</a></h2><p>Let's run our linear regression.  To do this we need to run call the LinearRegression Classs</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="err">???</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">spark_tips</span><span class="p">)</span>
-
-<span class="n">featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s2">&quot;tip ~ bill&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tip_data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;statsmodels.regression.linear_model.RegressionResultsWrapper at 0x102877710&gt;</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>//anaconda/lib/python3.5/site-packages/scipy/stats/stats.py:1394: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=10
+  &#34;anyway, n=%i&#34; % int(n))
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>           <td>tip</td>       <th>  R-squared:         </th> <td>   0.907</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.895</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   77.76</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Wed, 06 Jun 2018</td> <th>  Prob (F-statistic):</th> <td>2.15e-05</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>20:49:38</td>     <th>  Log-Likelihood:    </th> <td> -17.429</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    10</td>      <th>  AIC:               </th> <td>   38.86</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>     8</td>      <th>  BIC:               </th> <td>   39.46</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>   -1.4000</td> <td>    1.081</td> <td>   -1.295</td> <td> 0.231</td> <td>   -3.892</td> <td>    1.092</td>
+</tr>
+<tr>
+  <th>bill</th>      <td>    0.2429</td> <td>    0.028</td> <td>    8.818</td> <td> 0.000</td> <td>    0.179</td> <td>    0.306</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 3.785</td> <th>  Durbin-Watson:     </th> <td>   0.487</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.151</td> <th>  Jarque-Bera (JB):  </th> <td>   1.654</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td>-0.996</td> <th>  Prob(JB):          </th> <td>   0.437</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.036</td> <th>  Cond. No.          </th> <td>    86.8</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    12.0
+1     7.0
+2    13.0
+3     8.0
+4    15.0
+5     5.0
+6     2.0
+7     2.0
+8     3.0
+9     4.0
+Name: tip, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="k">import</span> <span class="n">pearsonr</span>   
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.952215351983
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.24285714285714277</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-5:-Create-a-Label-column-with-the-Vector">Step 5: Create a Label column with the Vector<a class="anchor-link" href="#Step-5:-Create-a-Label-column-with-the-Vector">&#182;</a></h2><p>We need a way to have the outcome variable.  In this case, we are trying to predict the tip from the bill.  So, we need to signal to Spark MLlib which one is the outcome variable.  In this case, we'll create a new variable called label.  Since we already have that, we can just rename the "tip" column as the "label".</p>
-<p><strong>=&gt;TODO: rename variable "tip" as "label" </strong></p>
+<h2 id="Step-7:-Plot-the-fit-line-(abline)">Step 7: Plot the fit line (abline)<a class="anchor-link" href="#Step-7:-Plot-the-fit-line-(abline)">&#182;</a></h2><p><strong>=&gt;TODO: Do a scatterplot of bill versus tip </strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">featureVector</span> <span class="o">=</span> <span class="n">featureVector</span><span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="s2">&quot;???&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;bill&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.regressionplots</span> <span class="k">import</span> <span class="n">abline_plot</span>
+<span class="n">abline_plot</span><span class="p">(</span><span class="n">model_results</span><span class="o">=</span><span class="n">result</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+"
+>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-6:-Run-Linear-Regression-in-Spark">Step 6: Run Linear Regression in Spark<a class="anchor-link" href="#Step-6:-Run-Linear-Regression-in-Spark">&#182;</a></h2><p>Let's run our linear regression.  To do this we need to run call the LinearRegression Classs</p>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">lrModel</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">featureVector</span><span class="p">)</span>
 
-<span class="n">intercept</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span>  <span class="c1"># This is the intercept</span>
-<span class="n">slope</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#This is the slope</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear model : &quot;</span><span class="p">,</span> <span class="n">lrModel</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intercept : &quot;</span><span class="p">,</span> <span class="n">intercept</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;slope : &quot;</span><span class="p">,</span> <span class="n">slope</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-7:-Plot-the-fit-line-(abline)">Step 7: Plot the fit line (abline)<a class="anchor-link" href="#Step-7:-Plot-the-fit-line-(abline)">&#182;</a></h2><p><strong>=&gt;TODO: Do a scatterplot of bill versus tip </strong>
-<strong>=&gt;TODO: rename variable "tip" as "label" </strong></p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12045,10 +12699,11 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list of values in the best fit line</span>
-<span class="n">abline_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">slope</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">intercept</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">]</span>
+<span class="c1"># TODO: Fill in gradient and intercept in formula</span>
+<span class="n">abline_values</span> <span class="o">=</span> <span class="p">[</span><span class="err">???</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="err">???</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">]</span>
 
 <span class="c1"># Plot the best fit line over the actual values</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="err">???</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="err">???</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">abline_values</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
@@ -12061,7 +12716,23 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a prediction using the slope and the intercept</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12070,31 +12741,8 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Print the coefficients and intercept for linear regression</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span><span class="p">))</span>
-
-
-<span class="c1"># Summarize the model over the training set and print out some metrics</span>
-<span class="n">trainingSummary</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numIterations: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">totalIterations</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objectiveHistory: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">trainingSummary</span><span class="o">.</span><span class="n">objectiveHistory</span><span class="p">))</span>
-<span class="n">trainingSummary</span><span class="o">.</span><span class="n">residuals</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">rootMeanSquaredError</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;r2: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">r2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12109,8 +12757,20 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">residuals</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="err">???</span><span class="p">,</span> <span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resid</span> <span class="o">=</span> <span class="p">(</span><span class="err">???</span> <span class="o">*</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span> <span class="o">+</span> <span class="err">???</span><span class="p">)</span> <span class="o">-</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">resid</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>  <span class="c1"># horizon</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
@@ -12123,7 +12783,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12132,7 +12793,8 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12144,7 +12806,8 @@ bill        0.226334605857</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12163,18 +12826,15 @@ If <code>tip = a * amount + b</code></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Print the coefficients and intercept for linear regression</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intercept</span> <span class="o">=</span> <span class="err">???</span> <span class="c1"># This is the intercept</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="err">???</span> <span class="c1">#This is the slope</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span>
+<span class="c1"># Print the coefficients and intercept for linear regression</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">intercept</span><span class="p">))</span>
 
-<span class="n">intercept</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span>
-<span class="n">slope</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intercept : &quot;</span><span class="p">,</span> <span class="n">intercept</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;slope : &quot;</span><span class="p">,</span> <span class="n">slope</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">slope</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span>
 </pre></div>
 
 </div>
@@ -12182,68 +12842,22 @@ If <code>tip = a * amount + b</code></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Correlation-Coefficient-(r)">Correlation Coefficient (r)<a class="anchor-link" href="#Correlation-Coefficient-(r)">&#182;</a></h3><p>Correlation Coefficient (r) denotes how strongly X &amp; Y are inter-related.</p>
-<p>Spark ML can create a correlation Matrix which shows how all the variables in the dataset are correlated, if at all.  Naturally, every variable will have a correlation of 1 when compared to itself.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.stat</span> <span class="k">import</span> <span class="n">Correlation</span>
-
-<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">correlationVector</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">spark_tips</span><span class="p">)</span>
-
-<span class="n">r1</span> <span class="o">=</span> <span class="n">Correlation</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">correlationVector</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pearson correlation matrix:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>==&gt;  Question : Does bill amount influence tip amount? (are they strongly linked?) </strong></p>
-<h2>Coefficient of Determination (r&sup2;)</h2>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># coefficient.of.determination (r^2) </span>
-<span class="n">rsquared</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">r2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rsquared</span><span class="p">)</span>
-<span class="c1"># 0.9067141</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>==&gt;  Question : What does r&sup2; tells us? </strong></p>
-<h2 id="Step-11:-Calculate-tip-for-$100-bill">Step 11: Calculate tip for $100 bill<a class="anchor-link" href="#Step-11:-Calculate-tip-for-$100-bill">&#182;</a></h2><p><strong>=&gt;TODO: perform the calculation for tip_for_100 using a,b coefficients </strong></p>
-
+<h3 id="TODO:-Calcluate-Tip-for-100-bill.">TODO: Calcluate Tip for 100 bill.<a class="anchor-link" href="#TODO:-Calcluate-Tip-for-100-bill.">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12252,9 +12866,7 @@ If <code>tip = a * amount + b</code></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Hint : tip = a * bill + b</span>
-<span class="c1">## we have already calculated a &amp; b above</span>
-<span class="n">tip_for_100</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="err">???</span> <span class="o">+</span> <span class="n">b</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tip_for_100</span> <span class="o">=</span> <span class="err">???</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="err">?</span><span class="o">??</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">tip_for_100</span><span class="p">)</span>
 </pre></div>
 
@@ -12263,11 +12875,13 @@ If <code>tip = a * amount + b</code></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-12:-Add-a-estimated_tip-column-to-pandas-and-spark-dataframe">Step 12: Add a estimated_tip column to pandas and spark dataframe<a class="anchor-link" href="#Step-12:-Add-a-estimated_tip-column-to-pandas-and-spark-dataframe">&#182;</a></h2>
+<h2 id="Step-12:-Add-a-estimated_tip-column-to-pandas-dataframe">Step 12: Add a estimated_tip column to pandas dataframe<a class="anchor-link" href="#Step-12:-Add-a-estimated_tip-column-to-pandas-dataframe">&#182;</a></h2><p><strong>=&gt;TODO: create a new pandas column called est_tip </strong></p>
+
 </div>
 </div>
 </div>
@@ -12276,8 +12890,7 @@ If <code>tip = a * amount + b</code></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tip_data</span><span class="p">[</span><span class="s1">&#39;est_tip&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tip_data</span><span class="p">[</span><span class="s1">&#39;est_tip&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="err">?</span><span class="o">??</span>
 <span class="n">tip_data</span>
 </pre></div>
 
@@ -12286,38 +12899,8 @@ If <code>tip = a * amount + b</code></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Add-estimated-tip-column-to-pyspark-dataframe">Add estimated tip column to pyspark dataframe<a class="anchor-link" href="#Add-estimated-tip-column-to-pyspark-dataframe">&#182;</a></h3><p>This is a bit tricky. We need to use the sql expr function to make this work.</p>
-<p>The formula: (bill * a) + b</p>
-<p><strong>=&gt;TODO: take formula and create new spark column called est_tip </strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="k">import</span> <span class="n">expr</span>
-
-<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;(bill * &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
-<span class="c1">## Step 6: Add estimated tip column to spark dataframe</span>
-<span class="n">spark_tips_with_est</span> <span class="o">=</span> <span class="n">spark_tips</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;est_tip&quot;</span><span class="p">,</span> <span class="n">expr</span><span class="p">(</span><span class="n">formula</span><span class="p">))</span>
-<span class="n">spark_tips_with_est</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12332,16 +12915,14 @@ If <code>tip = a * amount + b</code></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;bill&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">45.</span><span class="p">,</span> <span class="mf">55.</span><span class="p">,</span> <span class="mf">65.</span><span class="p">],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;bill&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">45.</span><span class="p">,</span> <span class="mf">55.</span><span class="p">,</span> <span class="mf">65.</span><span class="p">,]</span>
              <span class="p">})</span>
-<span class="n">test_data_spark</span> <span class="o">=</span>  <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">test_data_pd</span><span class="p">)</span>
-<span class="n">test_assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bill&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">test_features</span> <span class="o">=</span> <span class="n">test_assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_data_spark</span><span class="p">)</span>
 
-<span class="c1">## Hint : Transform &#39;test_features&#39;</span>
-<span class="n">test_predictions</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="err">???</span><span class="p">)</span>
+<span class="n">test_data_pd</span><span class="p">[</span><span class="s1">&#39;predicted_tip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data_pd</span><span class="p">)</span>
 
-<span class="n">test_predictions</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">test_data_pd</span>
 </pre></div>
 
 </div>
@@ -12349,103 +12930,18 @@ If <code>tip = a * amount + b</code></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-13:-Complete-Code">Step 13: Complete Code<a class="anchor-link" href="#Step-13:-Complete-Code">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.regression</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">expr</span>
-
-
-<span class="c1"># tip = a * amount + b</span>
-
-<span class="c1"># Make a Pandas dataframe</span>
-<span class="n">tip_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;bill&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">50.00</span><span class="p">,</span> <span class="mf">30.00</span><span class="p">,</span> <span class="mf">60.00</span><span class="p">,</span> <span class="mf">40.00</span><span class="p">,</span> <span class="mf">65.00</span><span class="p">,</span> <span class="mf">20.00</span><span class="p">,</span> <span class="mf">10.00</span><span class="p">,</span> <span class="mf">15.00</span><span class="p">,</span> <span class="mf">25.00</span><span class="p">,</span> <span class="mf">35.00</span><span class="p">],</span>
-              <span class="s1">&#39;tip&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">12.00</span><span class="p">,</span> <span class="mf">7.00</span><span class="p">,</span> <span class="mf">13.00</span><span class="p">,</span> <span class="mf">8.00</span><span class="p">,</span> <span class="mf">15.00</span><span class="p">,</span> <span class="mf">5.00</span><span class="p">,</span> <span class="mf">2.00</span><span class="p">,</span> <span class="mf">2.00</span><span class="p">,</span> <span class="mf">3.00</span><span class="p">,</span> <span class="mf">4.00</span><span class="p">]</span>
-             <span class="p">})</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">tip_data</span><span class="p">)</span>
-
-<span class="c1">#Plot the Tip Data</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-<span class="c1"># Create a Spark Dataframe</span>
-<span class="n">spark_tips</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">tip_data</span><span class="p">)</span>
-<span class="n">spark_tips</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Create a Features Columns</span>
-<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bill&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">spark_tips</span><span class="p">)</span>
-
-<span class="n">featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Create the label column</span>
-<span class="n">featureVector</span> <span class="o">=</span> <span class="n">featureVector</span><span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">)</span>
-<span class="n">featureVector</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Run Linear Regression</span>
-
-<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">lrModel</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">featureVector</span><span class="p">)</span>
-
-
-<span class="n">intercept</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span>  <span class="c1"># This is the intercept</span>
-<span class="n">slope</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#This is the slope</span>
-
-<span class="c1"># Plot the best fit line over the actual values</span>
-<span class="n">abline_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">slope</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">intercept</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">tip</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">abline_values</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Fit Line&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Summarize the model over the training set and print out some metrics</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Intercept: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">lrModel</span><span class="o">.</span><span class="n">intercept</span><span class="p">))</span>
-<span class="n">trainingSummary</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;numIterations: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">totalIterations</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;objectiveHistory: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">trainingSummary</span><span class="o">.</span><span class="n">objectiveHistory</span><span class="p">))</span>
-<span class="n">trainingSummary</span><span class="o">.</span><span class="n">residuals</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">rootMeanSquaredError</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;r2: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">trainingSummary</span><span class="o">.</span><span class="n">r2</span><span class="p">)</span>
-
-<span class="c1">#Plot Residuals</span>
-<span class="n">residuals</span> <span class="o">=</span> <span class="n">lrModel</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">residuals</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span><span class="p">,</span> <span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>  <span class="c1"># horizon</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;bill&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Residuals&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-
-<span class="c1"># Calculate Tip for $100 bill</span>
-<span class="n">tip_for_100</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">b</span>   
-<span class="k">print</span><span class="p">(</span><span class="n">tip_for_100</span><span class="p">)</span>
-
-
-<span class="c1"># Add est_tip to dataframes</span>
-<span class="n">tip_data</span><span class="p">[</span><span class="s1">&#39;est_tip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tip_data</span><span class="o">.</span><span class="n">bill</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1">#Pandas</span>
-<span class="n">tip_data</span>
-
-<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;(bill * &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) + &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1">#Spark</span>
-<span class="n">spark_tips_with_est</span> <span class="o">=</span> <span class="n">spark_tips</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;est_tip&quot;</span><span class="p">,</span> <span class="n">expr</span><span class="p">(</span><span class="n">formula</span><span class="p">))</span>
-<span class="n">spark_tips_with_est</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
     </div>
   </div>

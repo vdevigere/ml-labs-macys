@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,7 +11773,8 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11784,7 +11787,7 @@ well.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -11801,10 +11804,10 @@ well.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/nycflights13/flights.csv.gz&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/nycflights13/flights.csv.gz&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11814,7 +11817,7 @@ well.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
@@ -11824,23 +11827,1425 @@ well.</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>dep_time</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_time</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+      <th>time_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>517.0</td>
+      <td>515</td>
+      <td>2.0</td>
+      <td>830.0</td>
+      <td>819</td>
+      <td>11.0</td>
+      <td>UA</td>
+      <td>1545</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+      <td>227.0</td>
+      <td>1400</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>533.0</td>
+      <td>529</td>
+      <td>4.0</td>
+      <td>850.0</td>
+      <td>830</td>
+      <td>20.0</td>
+      <td>UA</td>
+      <td>1714</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+      <td>227.0</td>
+      <td>1416</td>
+      <td>5</td>
+      <td>29</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>542.0</td>
+      <td>540</td>
+      <td>2.0</td>
+      <td>923.0</td>
+      <td>850</td>
+      <td>33.0</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.0</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>544.0</td>
+      <td>545</td>
+      <td>-1.0</td>
+      <td>1004.0</td>
+      <td>1022</td>
+      <td>-18.0</td>
+      <td>B6</td>
+      <td>725</td>
+      <td>N804JB</td>
+      <td>JFK</td>
+      <td>BQN</td>
+      <td>183.0</td>
+      <td>1576</td>
+      <td>5</td>
+      <td>45</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>554.0</td>
+      <td>600</td>
+      <td>-6.0</td>
+      <td>812.0</td>
+      <td>837</td>
+      <td>-25.0</td>
+      <td>DL</td>
+      <td>461</td>
+      <td>N668DN</td>
+      <td>LGA</td>
+      <td>ATL</td>
+      <td>116.0</td>
+      <td>762</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>554.0</td>
+      <td>558</td>
+      <td>-4.0</td>
+      <td>740.0</td>
+      <td>728</td>
+      <td>12.0</td>
+      <td>UA</td>
+      <td>1696</td>
+      <td>N39463</td>
+      <td>EWR</td>
+      <td>ORD</td>
+      <td>150.0</td>
+      <td>719</td>
+      <td>5</td>
+      <td>58</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>555.0</td>
+      <td>600</td>
+      <td>-5.0</td>
+      <td>913.0</td>
+      <td>854</td>
+      <td>19.0</td>
+      <td>B6</td>
+      <td>507</td>
+      <td>N516JB</td>
+      <td>EWR</td>
+      <td>FLL</td>
+      <td>158.0</td>
+      <td>1065</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>557.0</td>
+      <td>600</td>
+      <td>-3.0</td>
+      <td>709.0</td>
+      <td>723</td>
+      <td>-14.0</td>
+      <td>EV</td>
+      <td>5708</td>
+      <td>N829AS</td>
+      <td>LGA</td>
+      <td>IAD</td>
+      <td>53.0</td>
+      <td>229</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>557.0</td>
+      <td>600</td>
+      <td>-3.0</td>
+      <td>838.0</td>
+      <td>846</td>
+      <td>-8.0</td>
+      <td>B6</td>
+      <td>79</td>
+      <td>N593JB</td>
+      <td>JFK</td>
+      <td>MCO</td>
+      <td>140.0</td>
+      <td>944</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>558.0</td>
+      <td>600</td>
+      <td>-2.0</td>
+      <td>753.0</td>
+      <td>745</td>
+      <td>8.0</td>
+      <td>AA</td>
+      <td>301</td>
+      <td>N3ALAA</td>
+      <td>LGA</td>
+      <td>ORD</td>
+      <td>138.0</td>
+      <td>733</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>558.0</td>
+      <td>600</td>
+      <td>-2.0</td>
+      <td>849.0</td>
+      <td>851</td>
+      <td>-2.0</td>
+      <td>B6</td>
+      <td>49</td>
+      <td>N793JB</td>
+      <td>JFK</td>
+      <td>PBI</td>
+      <td>149.0</td>
+      <td>1028</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>558.0</td>
+      <td>600</td>
+      <td>-2.0</td>
+      <td>853.0</td>
+      <td>856</td>
+      <td>-3.0</td>
+      <td>B6</td>
+      <td>71</td>
+      <td>N657JB</td>
+      <td>JFK</td>
+      <td>TPA</td>
+      <td>158.0</td>
+      <td>1005</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>558.0</td>
+      <td>600</td>
+      <td>-2.0</td>
+      <td>924.0</td>
+      <td>917</td>
+      <td>7.0</td>
+      <td>UA</td>
+      <td>194</td>
+      <td>N29129</td>
+      <td>JFK</td>
+      <td>LAX</td>
+      <td>345.0</td>
+      <td>2475</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>558.0</td>
+      <td>600</td>
+      <td>-2.0</td>
+      <td>923.0</td>
+      <td>937</td>
+      <td>-14.0</td>
+      <td>UA</td>
+      <td>1124</td>
+      <td>N53441</td>
+      <td>EWR</td>
+      <td>SFO</td>
+      <td>361.0</td>
+      <td>2565</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>559.0</td>
+      <td>600</td>
+      <td>-1.0</td>
+      <td>941.0</td>
+      <td>910</td>
+      <td>31.0</td>
+      <td>AA</td>
+      <td>707</td>
+      <td>N3DUAA</td>
+      <td>LGA</td>
+      <td>DFW</td>
+      <td>257.0</td>
+      <td>1389</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>559.0</td>
+      <td>559</td>
+      <td>0.0</td>
+      <td>702.0</td>
+      <td>706</td>
+      <td>-4.0</td>
+      <td>B6</td>
+      <td>1806</td>
+      <td>N708JB</td>
+      <td>JFK</td>
+      <td>BOS</td>
+      <td>44.0</td>
+      <td>187</td>
+      <td>5</td>
+      <td>59</td>
+      <td>2013-01-01 05:00:00</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>559.0</td>
+      <td>600</td>
+      <td>-1.0</td>
+      <td>854.0</td>
+      <td>902</td>
+      <td>-8.0</td>
+      <td>UA</td>
+      <td>1187</td>
+      <td>N76515</td>
+      <td>EWR</td>
+      <td>LAS</td>
+      <td>337.0</td>
+      <td>2227</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>600.0</td>
+      <td>600</td>
+      <td>0.0</td>
+      <td>851.0</td>
+      <td>858</td>
+      <td>-7.0</td>
+      <td>B6</td>
+      <td>371</td>
+      <td>N595JB</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>152.0</td>
+      <td>1076</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>600.0</td>
+      <td>600</td>
+      <td>0.0</td>
+      <td>837.0</td>
+      <td>825</td>
+      <td>12.0</td>
+      <td>MQ</td>
+      <td>4650</td>
+      <td>N542MQ</td>
+      <td>LGA</td>
+      <td>ATL</td>
+      <td>134.0</td>
+      <td>762</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>601.0</td>
+      <td>600</td>
+      <td>1.0</td>
+      <td>844.0</td>
+      <td>850</td>
+      <td>-6.0</td>
+      <td>B6</td>
+      <td>343</td>
+      <td>N644JB</td>
+      <td>EWR</td>
+      <td>PBI</td>
+      <td>147.0</td>
+      <td>1023</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>602.0</td>
+      <td>610</td>
+      <td>-8.0</td>
+      <td>812.0</td>
+      <td>820</td>
+      <td>-8.0</td>
+      <td>DL</td>
+      <td>1919</td>
+      <td>N971DL</td>
+      <td>LGA</td>
+      <td>MSP</td>
+      <td>170.0</td>
+      <td>1020</td>
+      <td>6</td>
+      <td>10</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>602.0</td>
+      <td>605</td>
+      <td>-3.0</td>
+      <td>821.0</td>
+      <td>805</td>
+      <td>16.0</td>
+      <td>MQ</td>
+      <td>4401</td>
+      <td>N730MQ</td>
+      <td>LGA</td>
+      <td>DTW</td>
+      <td>105.0</td>
+      <td>502</td>
+      <td>6</td>
+      <td>5</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>606.0</td>
+      <td>610</td>
+      <td>-4.0</td>
+      <td>858.0</td>
+      <td>910</td>
+      <td>-12.0</td>
+      <td>AA</td>
+      <td>1895</td>
+      <td>N633AA</td>
+      <td>EWR</td>
+      <td>MIA</td>
+      <td>152.0</td>
+      <td>1085</td>
+      <td>6</td>
+      <td>10</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>606.0</td>
+      <td>610</td>
+      <td>-4.0</td>
+      <td>837.0</td>
+      <td>845</td>
+      <td>-8.0</td>
+      <td>DL</td>
+      <td>1743</td>
+      <td>N3739P</td>
+      <td>JFK</td>
+      <td>ATL</td>
+      <td>128.0</td>
+      <td>760</td>
+      <td>6</td>
+      <td>10</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>607.0</td>
+      <td>607</td>
+      <td>0.0</td>
+      <td>858.0</td>
+      <td>915</td>
+      <td>-17.0</td>
+      <td>UA</td>
+      <td>1077</td>
+      <td>N53442</td>
+      <td>EWR</td>
+      <td>MIA</td>
+      <td>157.0</td>
+      <td>1085</td>
+      <td>6</td>
+      <td>7</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>608.0</td>
+      <td>600</td>
+      <td>8.0</td>
+      <td>807.0</td>
+      <td>735</td>
+      <td>32.0</td>
+      <td>MQ</td>
+      <td>3768</td>
+      <td>N9EAMQ</td>
+      <td>EWR</td>
+      <td>ORD</td>
+      <td>139.0</td>
+      <td>719</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>611.0</td>
+      <td>600</td>
+      <td>11.0</td>
+      <td>945.0</td>
+      <td>931</td>
+      <td>14.0</td>
+      <td>UA</td>
+      <td>303</td>
+      <td>N532UA</td>
+      <td>JFK</td>
+      <td>SFO</td>
+      <td>366.0</td>
+      <td>2586</td>
+      <td>6</td>
+      <td>0</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>613.0</td>
+      <td>610</td>
+      <td>3.0</td>
+      <td>925.0</td>
+      <td>921</td>
+      <td>4.0</td>
+      <td>B6</td>
+      <td>135</td>
+      <td>N635JB</td>
+      <td>JFK</td>
+      <td>RSW</td>
+      <td>175.0</td>
+      <td>1074</td>
+      <td>6</td>
+      <td>10</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>615.0</td>
+      <td>615</td>
+      <td>0.0</td>
+      <td>1039.0</td>
+      <td>1100</td>
+      <td>-21.0</td>
+      <td>B6</td>
+      <td>709</td>
+      <td>N794JB</td>
+      <td>JFK</td>
+      <td>SJU</td>
+      <td>182.0</td>
+      <td>1598</td>
+      <td>6</td>
+      <td>15</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>615.0</td>
+      <td>615</td>
+      <td>0.0</td>
+      <td>833.0</td>
+      <td>842</td>
+      <td>-9.0</td>
+      <td>DL</td>
+      <td>575</td>
+      <td>N326NB</td>
+      <td>EWR</td>
+      <td>ATL</td>
+      <td>120.0</td>
+      <td>746</td>
+      <td>6</td>
+      <td>15</td>
+      <td>2013-01-01 06:00:00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336746</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2123.0</td>
+      <td>2125</td>
+      <td>-2.0</td>
+      <td>2223.0</td>
+      <td>2247</td>
+      <td>-24.0</td>
+      <td>EV</td>
+      <td>5489</td>
+      <td>N712EV</td>
+      <td>LGA</td>
+      <td>CHO</td>
+      <td>45.0</td>
+      <td>305</td>
+      <td>21</td>
+      <td>25</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336747</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2127.0</td>
+      <td>2129</td>
+      <td>-2.0</td>
+      <td>2314.0</td>
+      <td>2323</td>
+      <td>-9.0</td>
+      <td>EV</td>
+      <td>3833</td>
+      <td>N16546</td>
+      <td>EWR</td>
+      <td>CLT</td>
+      <td>72.0</td>
+      <td>529</td>
+      <td>21</td>
+      <td>29</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336748</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2128.0</td>
+      <td>2130</td>
+      <td>-2.0</td>
+      <td>2328.0</td>
+      <td>2359</td>
+      <td>-31.0</td>
+      <td>B6</td>
+      <td>97</td>
+      <td>N807JB</td>
+      <td>JFK</td>
+      <td>DEN</td>
+      <td>213.0</td>
+      <td>1626</td>
+      <td>21</td>
+      <td>30</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336749</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2129.0</td>
+      <td>2059</td>
+      <td>30.0</td>
+      <td>2230.0</td>
+      <td>2232</td>
+      <td>-2.0</td>
+      <td>EV</td>
+      <td>5048</td>
+      <td>N751EV</td>
+      <td>LGA</td>
+      <td>RIC</td>
+      <td>45.0</td>
+      <td>292</td>
+      <td>20</td>
+      <td>59</td>
+      <td>2013-09-30 20:00:00</td>
+    </tr>
+    <tr>
+      <th>336750</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2131.0</td>
+      <td>2140</td>
+      <td>-9.0</td>
+      <td>2225.0</td>
+      <td>2255</td>
+      <td>-30.0</td>
+      <td>MQ</td>
+      <td>3621</td>
+      <td>N807MQ</td>
+      <td>JFK</td>
+      <td>DCA</td>
+      <td>36.0</td>
+      <td>213</td>
+      <td>21</td>
+      <td>40</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336751</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2140.0</td>
+      <td>2140</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>40</td>
+      <td>-30.0</td>
+      <td>AA</td>
+      <td>185</td>
+      <td>N335AA</td>
+      <td>JFK</td>
+      <td>LAX</td>
+      <td>298.0</td>
+      <td>2475</td>
+      <td>21</td>
+      <td>40</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336752</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2142.0</td>
+      <td>2129</td>
+      <td>13.0</td>
+      <td>2250.0</td>
+      <td>2239</td>
+      <td>11.0</td>
+      <td>EV</td>
+      <td>4509</td>
+      <td>N12957</td>
+      <td>EWR</td>
+      <td>PWM</td>
+      <td>47.0</td>
+      <td>284</td>
+      <td>21</td>
+      <td>29</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336753</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2145.0</td>
+      <td>2145</td>
+      <td>0.0</td>
+      <td>115.0</td>
+      <td>140</td>
+      <td>-25.0</td>
+      <td>B6</td>
+      <td>1103</td>
+      <td>N633JB</td>
+      <td>JFK</td>
+      <td>SJU</td>
+      <td>192.0</td>
+      <td>1598</td>
+      <td>21</td>
+      <td>45</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336754</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2147.0</td>
+      <td>2137</td>
+      <td>10.0</td>
+      <td>30.0</td>
+      <td>27</td>
+      <td>3.0</td>
+      <td>B6</td>
+      <td>1371</td>
+      <td>N627JB</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>139.0</td>
+      <td>1076</td>
+      <td>21</td>
+      <td>37</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336755</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2149.0</td>
+      <td>2156</td>
+      <td>-7.0</td>
+      <td>2245.0</td>
+      <td>2308</td>
+      <td>-23.0</td>
+      <td>UA</td>
+      <td>523</td>
+      <td>N813UA</td>
+      <td>EWR</td>
+      <td>BOS</td>
+      <td>37.0</td>
+      <td>200</td>
+      <td>21</td>
+      <td>56</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336756</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2150.0</td>
+      <td>2159</td>
+      <td>-9.0</td>
+      <td>2250.0</td>
+      <td>2306</td>
+      <td>-16.0</td>
+      <td>EV</td>
+      <td>3842</td>
+      <td>N10575</td>
+      <td>EWR</td>
+      <td>MHT</td>
+      <td>39.0</td>
+      <td>209</td>
+      <td>21</td>
+      <td>59</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336757</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2159.0</td>
+      <td>1845</td>
+      <td>194.0</td>
+      <td>2344.0</td>
+      <td>2030</td>
+      <td>194.0</td>
+      <td>9E</td>
+      <td>3320</td>
+      <td>N906XJ</td>
+      <td>JFK</td>
+      <td>BUF</td>
+      <td>50.0</td>
+      <td>301</td>
+      <td>18</td>
+      <td>45</td>
+      <td>2013-09-30 18:00:00</td>
+    </tr>
+    <tr>
+      <th>336758</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2203.0</td>
+      <td>2205</td>
+      <td>-2.0</td>
+      <td>2339.0</td>
+      <td>2331</td>
+      <td>8.0</td>
+      <td>EV</td>
+      <td>5311</td>
+      <td>N722EV</td>
+      <td>LGA</td>
+      <td>BGR</td>
+      <td>61.0</td>
+      <td>378</td>
+      <td>22</td>
+      <td>5</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336759</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2207.0</td>
+      <td>2140</td>
+      <td>27.0</td>
+      <td>2257.0</td>
+      <td>2250</td>
+      <td>7.0</td>
+      <td>MQ</td>
+      <td>3660</td>
+      <td>N532MQ</td>
+      <td>LGA</td>
+      <td>BNA</td>
+      <td>97.0</td>
+      <td>764</td>
+      <td>21</td>
+      <td>40</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336760</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2211.0</td>
+      <td>2059</td>
+      <td>72.0</td>
+      <td>2339.0</td>
+      <td>2242</td>
+      <td>57.0</td>
+      <td>EV</td>
+      <td>4672</td>
+      <td>N12145</td>
+      <td>EWR</td>
+      <td>STL</td>
+      <td>120.0</td>
+      <td>872</td>
+      <td>20</td>
+      <td>59</td>
+      <td>2013-09-30 20:00:00</td>
+    </tr>
+    <tr>
+      <th>336761</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2231.0</td>
+      <td>2245</td>
+      <td>-14.0</td>
+      <td>2335.0</td>
+      <td>2356</td>
+      <td>-21.0</td>
+      <td>B6</td>
+      <td>108</td>
+      <td>N193JB</td>
+      <td>JFK</td>
+      <td>PWM</td>
+      <td>48.0</td>
+      <td>273</td>
+      <td>22</td>
+      <td>45</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336762</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2233.0</td>
+      <td>2113</td>
+      <td>80.0</td>
+      <td>112.0</td>
+      <td>30</td>
+      <td>42.0</td>
+      <td>UA</td>
+      <td>471</td>
+      <td>N578UA</td>
+      <td>EWR</td>
+      <td>SFO</td>
+      <td>318.0</td>
+      <td>2565</td>
+      <td>21</td>
+      <td>13</td>
+      <td>2013-09-30 21:00:00</td>
+    </tr>
+    <tr>
+      <th>336763</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2235.0</td>
+      <td>2001</td>
+      <td>154.0</td>
+      <td>59.0</td>
+      <td>2249</td>
+      <td>130.0</td>
+      <td>B6</td>
+      <td>1083</td>
+      <td>N804JB</td>
+      <td>JFK</td>
+      <td>MCO</td>
+      <td>123.0</td>
+      <td>944</td>
+      <td>20</td>
+      <td>1</td>
+      <td>2013-09-30 20:00:00</td>
+    </tr>
+    <tr>
+      <th>336764</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2237.0</td>
+      <td>2245</td>
+      <td>-8.0</td>
+      <td>2345.0</td>
+      <td>2353</td>
+      <td>-8.0</td>
+      <td>B6</td>
+      <td>234</td>
+      <td>N318JB</td>
+      <td>JFK</td>
+      <td>BTV</td>
+      <td>43.0</td>
+      <td>266</td>
+      <td>22</td>
+      <td>45</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336765</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2240.0</td>
+      <td>2245</td>
+      <td>-5.0</td>
+      <td>2334.0</td>
+      <td>2351</td>
+      <td>-17.0</td>
+      <td>B6</td>
+      <td>1816</td>
+      <td>N354JB</td>
+      <td>JFK</td>
+      <td>SYR</td>
+      <td>41.0</td>
+      <td>209</td>
+      <td>22</td>
+      <td>45</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336766</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2240.0</td>
+      <td>2250</td>
+      <td>-10.0</td>
+      <td>2347.0</td>
+      <td>7</td>
+      <td>-20.0</td>
+      <td>B6</td>
+      <td>2002</td>
+      <td>N281JB</td>
+      <td>JFK</td>
+      <td>BUF</td>
+      <td>52.0</td>
+      <td>301</td>
+      <td>22</td>
+      <td>50</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336767</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2241.0</td>
+      <td>2246</td>
+      <td>-5.0</td>
+      <td>2345.0</td>
+      <td>1</td>
+      <td>-16.0</td>
+      <td>B6</td>
+      <td>486</td>
+      <td>N346JB</td>
+      <td>JFK</td>
+      <td>ROC</td>
+      <td>47.0</td>
+      <td>264</td>
+      <td>22</td>
+      <td>46</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336768</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2307.0</td>
+      <td>2255</td>
+      <td>12.0</td>
+      <td>2359.0</td>
+      <td>2358</td>
+      <td>1.0</td>
+      <td>B6</td>
+      <td>718</td>
+      <td>N565JB</td>
+      <td>JFK</td>
+      <td>BOS</td>
+      <td>33.0</td>
+      <td>187</td>
+      <td>22</td>
+      <td>55</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336769</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2349.0</td>
+      <td>2359</td>
+      <td>-10.0</td>
+      <td>325.0</td>
+      <td>350</td>
+      <td>-25.0</td>
+      <td>B6</td>
+      <td>745</td>
+      <td>N516JB</td>
+      <td>JFK</td>
+      <td>PSE</td>
+      <td>196.0</td>
+      <td>1617</td>
+      <td>23</td>
+      <td>59</td>
+      <td>2013-09-30 23:00:00</td>
+    </tr>
+    <tr>
+      <th>336770</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1842</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2019</td>
+      <td>NaN</td>
+      <td>EV</td>
+      <td>5274</td>
+      <td>N740EV</td>
+      <td>LGA</td>
+      <td>BNA</td>
+      <td>NaN</td>
+      <td>764</td>
+      <td>18</td>
+      <td>42</td>
+      <td>2013-09-30 18:00:00</td>
+    </tr>
+    <tr>
+      <th>336771</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1455</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1634</td>
+      <td>NaN</td>
+      <td>9E</td>
+      <td>3393</td>
+      <td>NaN</td>
+      <td>JFK</td>
+      <td>DCA</td>
+      <td>NaN</td>
+      <td>213</td>
+      <td>14</td>
+      <td>55</td>
+      <td>2013-09-30 14:00:00</td>
+    </tr>
+    <tr>
+      <th>336772</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>2200</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2312</td>
+      <td>NaN</td>
+      <td>9E</td>
+      <td>3525</td>
+      <td>NaN</td>
+      <td>LGA</td>
+      <td>SYR</td>
+      <td>NaN</td>
+      <td>198</td>
+      <td>22</td>
+      <td>0</td>
+      <td>2013-09-30 22:00:00</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1210</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1330</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3461</td>
+      <td>N535MQ</td>
+      <td>LGA</td>
+      <td>BNA</td>
+      <td>NaN</td>
+      <td>764</td>
+      <td>12</td>
+      <td>10</td>
+      <td>2013-09-30 12:00:00</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1159</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1344</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3572</td>
+      <td>N511MQ</td>
+      <td>LGA</td>
+      <td>CLE</td>
+      <td>NaN</td>
+      <td>419</td>
+      <td>11</td>
+      <td>59</td>
+      <td>2013-09-30 11:00:00</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>840</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1020</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3531</td>
+      <td>N839MQ</td>
+      <td>LGA</td>
+      <td>RDU</td>
+      <td>NaN</td>
+      <td>431</td>
+      <td>8</td>
+      <td>40</td>
+      <td>2013-09-30 08:00:00</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 19 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let us focus on some summary and visualizations that we can do here. Let's start out by finding the average delay by month.  We'll also do a matplotlib on it.</p>
-<p><strong>=&gt; TODO: find the mean arrival delay (arr_delay) by month.  Hint (use a groupby)</strong></p>
+<p>Let us focus on some summary and visualizations that we can do here. Let's start out by finding the average delay by month.  We'll also do a matlibplot on it.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_delay_by_month</span> <span class="o">=</span> <span class="err">?</span><span class="o">??</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_delay_by_month</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">mean_delay_by_month</span>
 </pre></div>
 
@@ -11848,10 +13253,41 @@ well.</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>month
+1      6.129972
+2      5.613019
+3      5.807577
+4     11.176063
+5      3.521509
+6     16.481330
+7     16.711307
+8      6.040652
+9     -4.018364
+10    -0.167063
+11     0.461347
+12    14.870355
+Name: arr_delay, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_month_plt</span> <span class="o">=</span> <span class="n">mean_delay_by_month</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean Delay By Month&quot;</span><span class="p">)</span>
@@ -11862,30 +13298,322 @@ well.</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10316a358&gt;</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that flights in two months actually have negative delay.  No doubt airlines "pad" flight times to achieve better results.</p>
 <p>One would guess that flights to certain airports may have different results. For example, flights to Chicago (ORD) would no doubt be affected by winter weather. Let's take a look at that.</p>
-<p><strong>=&gt; TODO: find the mean arrival delay (arr_delay) by month to Chicago.<br>
-Hint: filter dataframe by dest = ORD</strong></p>
-<p><strong>=&gt; TODO: Plot mean delay by month </strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_delay_by_month_ord</span> <span class="o">=</span> <span class="err">???</span>  <span class="c1"># TODO: get mean arr_delay grouped by month to dest=&#39;ORD&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1040f0390&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+BrskFeb/AJI1p/hkroSCAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_delay_by_month_ord</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">dest</span> <span class="o">==</span> <span class="s1">&#39;ORD&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_delay_by_month_ord</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>month
+1      7.287694
+2      3.680794
+3     -2.702473
+4     19.179352
+5      7.938280
+6     13.299376
+7      8.405514
+8      4.256851
+9     -4.745370
+10    -1.597090
+11     2.071058
+12    16.462817
+Name: arr_delay, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean_delay_by_month_ord</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">dest</span> <span class="o">==</span> <span class="s1">&#39;ORD&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flights to Chicago (ORD)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mean_delay_by_month_ord</span><span class="p">)</span>
 
-<span class="n">mean_month_plt_ord</span> <span class="o">=</span> <span class="n">mean_delay_by_month_ord</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean Delay By Month (Chicago)&quot;</span><span class="p">)</span>
+<span class="n">mean_month_plt_ord</span> <span class="o">=</span> <span class="n">mean_delay_by_month_ord</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean Delay By Month (Chicago)&quot;</span><span class="p">)</span>
 <span class="n">mean_month_plt_ord</span>
 </pre></div>
 
@@ -11893,21 +13621,172 @@ Hint: filter dataframe by dest = ORD</strong></p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Flights to Chicago (ORD)
+month
+1      7.287694
+2      3.680794
+3     -2.702473
+4     19.179352
+5      7.938280
+6     13.299376
+7      8.405514
+8      4.256851
+9     -4.745370
+10    -1.597090
+11     2.071058
+12    16.462817
+Name: arr_delay, dtype: float64
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>=&gt; TODO: find the mean arrival delay (arr_delay) by month to Los Angeles.<br>
-Hint: filter dataframe by dest = LAX</strong></p>
-<p><strong>=&gt; TODO: Plot mean delay by month </strong></p>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x103a5dc18&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+jTHYJakx/x/RutE4Wrp1IQAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s try Los Angeles and compare that</span>
@@ -11916,21 +13795,179 @@ Hint: filter dataframe by dest = LAX</strong></p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flights to Los Angeles (LAX)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mean_delay_by_month_lax</span><span class="p">)</span>
 
-<span class="n">mean_month_plt_lax</span> <span class="o">=</span> <span class="err">?</span><span class="o">??</span>
+<span class="n">mean_month_plt_lax</span> <span class="o">=</span> <span class="n">mean_delay_by_month_lax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean Delay By Month (Los Angeles)&quot;</span><span class="p">)</span>
+<span class="n">mean_month_plt_lax</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Flights to Los Angeles (LAX)
+month
+1     -4.160312
+2     -7.601824
+3     -5.280928
+4      3.085153
+5     -7.150657
+6     13.007027
+7      8.191432
+8      1.028667
+9     -8.719044
+10    -1.205694
+11    -0.103290
+12    10.724460
+Name: arr_delay, dtype: float64
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x104227da0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Perhaps we would like to see which Airline carrier is the best for delays.  Here we have some plots to do that.</p>
-<p><strong>=&gt; TODO: find the mean arrival delay (arr_delay) by carrier. *</strong>
-<strong>=&gt; TODO: find the mean departure delay (dep_delay) by carrier. *</strong></p>
 
 </div>
 </div>
@@ -11941,13 +13978,18 @@ Hint: filter dataframe by dest = LAX</strong></p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine if specific carrier will create different delay impact</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;carrier&#39;</span><span class="p">,</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]]</span><span class="o">.</span><span class="err">???</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;carrier&#39;</span><span class="p">,</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;carrier&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Carrier&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Average Delay in Min&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Arrival Delay by Carrier, All airports&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Arrival Delay by Carrier in 2008, All  airports&#39;</span><span class="p">)</span>
 
-<span class="c1">#TODO: do the same for dep_delay</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;carrier&#39;</span><span class="p">,</span><span class="s1">&#39;dep_delay&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;carrier&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Carrier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Average Delay in Min&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Departure Delay by Carrier in 2008, All  airports&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11955,7 +13997,8 @@ Hint: filter dataframe by dest = LAX</strong></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11964,7 +14007,8 @@ Hint: filter dataframe by dest = LAX</strong></p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11978,7 +14022,7 @@ Hint: filter dataframe by dest = LAX</strong></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/nycflights13/weather.csv.gz&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/nycflights13/weather.csv.gz&#39;</span><span class="p">)</span>
 <span class="n">weather</span>
 </pre></div>
 
@@ -11987,21 +14031,12 @@ Hint: filter dataframe by dest = LAX</strong></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>=&gt; TODO: Perform the left join.  In pandas, this is called a merge.  We will join on 4 columns: year, month,day,hour</strong></p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_withweather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;???&#39;</span><span class="p">,</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_withweather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">weather</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">])</span>
 <span class="n">df_withweather</span>
 </pre></div>
 
@@ -12015,7 +14050,7 @@ Hint: filter dataframe by dest = LAX</strong></p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">airports</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/nycflights13/airports.csv.gz&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">airports</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/nycflights13/airports.csv.gz&#39;</span><span class="p">)</span>
 <span class="n">airports</span>
 </pre></div>
 
@@ -12024,21 +14059,12 @@ Hint: filter dataframe by dest = LAX</strong></p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>=&gt; TODO: Perform the left join on airports.  In pandas, this is called a merge. in flights the column is 'dest' (left_on='dest'), in airports it is 'faa': (right_on='faa') </strong></p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_withairport</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="err">???</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_withairport</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_withweather</span><span class="p">,</span> <span class="n">airports</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;dest&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;faa&#39;</span><span class="p">)</span>
 <span class="n">df_withairport</span>
 </pre></div>
 
