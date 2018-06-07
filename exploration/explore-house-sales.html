@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,7 +11773,8 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11787,8 +11790,6 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spark UI running on http://YOURIPADDRESS:&#39;</span> <span class="o">+</span> <span class="n">sc</span><span class="o">.</span><span class="n">uiWebUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -11796,7 +11797,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11809,8 +11811,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;/data/house-prices/house-sales-simplified.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">house_prices</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/data/house-prices/house-sales-simplified.csv&quot;</span><span class="p">)</span>
+<span class="n">house_prices</span>
 </pre></div>
 
 </div>
@@ -11818,7 +11820,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11831,7 +11834,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 <span class="c1"># copy this output to a text editor to see all the details</span>
 </pre></div>
 
@@ -11840,7 +11843,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11853,7 +11857,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="p">[[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11861,7 +11865,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11876,8 +11881,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Hint : &#39;Bedrooms&#39;</span>
-<span class="n">bedroom_sales</span> <span class="o">=</span> <span class="n">house_prices</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="n">bedroom_sales</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">bedroom_sales</span> <span class="o">=</span> <span class="n">house_prices</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Bedrooms&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">bedroom_sales</span>
 </pre></div>
 
 </div>
@@ -11890,8 +11895,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## order by bedrooms</span>
-<span class="n">bedroom_sales</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;Bedrooms&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO: order by count top to bottom</span>
+<span class="n">bedroom_sales</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
 </pre></div>
 
 </div>
@@ -11899,21 +11904,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## order by count top to bottom</span>
-<span class="n">bedroom_sales</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11927,7 +11919,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">percentiles</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">)</span>
-<span class="n">prices</span> <span class="o">=</span> <span class="n">house_prices</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">approxQuantile</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="n">house_prices</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">percentiles</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">percentiles</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
@@ -11942,40 +11934,19 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Explore-Stat-object-in-dataframe">Explore Stat object in dataframe<a class="anchor-link" href="#Explore-Stat-object-in-dataframe">&#182;</a></h2><p><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=dataframe#pyspark.sql.DataFrameStatFunctions">API for pyspark.sql.DataFrameStatFunctions</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># hit the tab key after the dot(.)</span>
-<span class="n">house_prices</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Covariance-&amp;-Correlation">Covariance &amp; Correlation<a class="anchor-link" href="#Covariance-&amp;-Correlation">&#182;</a></h2><p>Q1 : Calculate Covariance between "SalePrice"  and "Bedrooms"</p>
+<h2 id="Covariance-&amp;-Correlation">Covariance &amp; Correlation<a class="anchor-link" href="#Covariance-&amp;-Correlation">&#182;</a></h2><p>Q1 : Calculate Covariance between "SalePrice"  and "Bedrooms"
+    df.cov()</p>
 <p>Q1 : Which attributes influences sale price more?</p>
 <ul>
 <li>Number of Bedrooms ("Bedrooms")</li>
 <li>or size of the home ("SqFtTotLiving")</li>
 </ul>
-<p>Hint : calculate Correlation</p>
+<p>Hint : calculate Correlation  df.corr()</p>
 <p><strong>Q=&gt; Can you explain the result</strong></p>
 
 </div>
@@ -11986,10 +11957,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">house_prices</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bedrooms&quot;</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">house_prices</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bedrooms&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">house_prices</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">,</span> <span class="s2">&quot;SqFtTotLiving&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="o">.</span><span class="err">???</span> <span class="c1"># Calculate covariance matrix</span>
 </pre></div>
 
 </div>
@@ -11997,7 +11965,34 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">house_prices</span><span class="o">.</span><span class="err">???</span>  <span class="c1"># calculate correlation matrix</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12014,10 +12009,7 @@ To find the most expensive zip code, let's first calculate  <strong>price per sq
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Step 1 : calculate price per sqft</span>
 <span class="c1">## TODO : do the math, divide  house_prices[&#39;SalePrice&#39;] by  house_prices[&#39;SqFtTotLiving&#39;]</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">house_prices</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;price_per_sqft&quot;</span><span class="p">,</span> <span class="n">house_prices</span><span class="p">[</span><span class="s2">&quot;???&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">house_prices</span><span class="p">[</span><span class="s1">&#39;???&#39;</span><span class="p">])</span>
-
-<span class="n">price_per_sqft</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="s1">&#39;SqFtTotLiving&#39;</span><span class="p">,</span> <span class="s1">&#39;price_per_sqft&#39;</span> <span class="p">,</span> <span class="s1">&#39;ZipCode&#39;</span><span class="p">)</span>
-<span class="n">price_per_sqft</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">house_prices</span><span class="p">[</span><span class="s1">&#39;price_per_sqft&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="err">?</span><span class="o">??</span>
 </pre></div>
 
 </div>
@@ -12031,8 +12023,8 @@ To find the most expensive zip code, let's first calculate  <strong>price per sq
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Group data by zipcode and take the avg of price_per_sqft</span>
-<span class="n">b</span>  <span class="o">=</span> <span class="n">price_per_sqft</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">b</span>  <span class="o">=</span> <span class="n">price_per_sqft</span><span class="o">.</span><span class="err">?</span><span class="o">??</span> 
+<span class="n">b</span>
 </pre></div>
 
 </div>
@@ -12046,7 +12038,7 @@ To find the most expensive zip code, let's first calculate  <strong>price per sq
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Now sort by avg price</span>
-<span class="n">b</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="err">???</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 </div>

@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,7 +11773,8 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11782,15 +11785,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="k">import</span> <span class="n">isnan</span><span class="p">,</span> <span class="n">when</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">trim</span><span class="p">,</span> <span class="n">countDistinct</span><span class="p">,</span> <span class="nb">abs</span> 
-<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="k">import</span> <span class="n">IntegerType</span>
-<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spark UI running on http://YOURIPADDRESS:&#39;</span> <span class="o">+</span> <span class="n">sc</span><span class="o">.</span><span class="n">uiWebUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 
 </div>
@@ -11798,7 +11797,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11809,7 +11809,8 @@ Here we have a sample of 10k for 2016 contributions.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11819,22 +11820,1370 @@ Here we have a sample of 10k for 2016 contributions.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Load presidential contrib data</span>
-<span class="n">contribs</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;/data/presidential_election_contribs/2016/2016-100k.csv.gz&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">contribs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/data/presidential_election_contribs/2016/2016-100k.csv.gz&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">contribs</span>
+</pre></div>
 
-<span class="c1">## TODO: printSchema</span>
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CMTE_ID</th>
+      <th>CAND_ID</th>
+      <th>CAND_NM</th>
+      <th>CONTBR_NM</th>
+      <th>CONTBR_CITY</th>
+      <th>CONTBR_ST</th>
+      <th>CONTBR_ZIP</th>
+      <th>CONTBR_EMPLOYER</th>
+      <th>CONTBR_OCCUPATION</th>
+      <th>CONTB_RECEIPT_AMT</th>
+      <th>CONTB_RECEIPT_DT</th>
+      <th>RECEIPT_DESC</th>
+      <th>MEMO_CD</th>
+      <th>MEMO_TEXT</th>
+      <th>FORM_TP</th>
+      <th>FILE_NUM</th>
+      <th>TRAN_ID</th>
+      <th>ELECTION_TP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C00605568</td>
+      <td>P20002671</td>
+      <td>Johnson, Gary</td>
+      <td>SMITH, PAUL</td>
+      <td>SAN DIEGO</td>
+      <td>CA</td>
+      <td>92117</td>
+      <td>SELF</td>
+      <td>RETIRED</td>
+      <td>150.00</td>
+      <td>16-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1112281</td>
+      <td>SA17A.66792</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>BROWNE, THOMAS JOHN</td>
+      <td>WHITESBORO</td>
+      <td>NY</td>
+      <td>134921106</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>35.00</td>
+      <td>30-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.279055</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>RISENHOOVER, LINDSEY</td>
+      <td>TULSA</td>
+      <td>OK</td>
+      <td>74133</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>73.59</td>
+      <td>09-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.136964</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RUIZ, GIULIANNA</td>
+      <td>NEW YORK</td>
+      <td>NY</td>
+      <td>100025651</td>
+      <td>TRILANTIC CAPITAL MANAGEMENT L.P.</td>
+      <td>CHIEF COMPLIANCE OFFICER &amp; COUNSEL</td>
+      <td>500.00</td>
+      <td>19-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137625</td>
+      <td>C11919741</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BRIGGS, AMY</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112314003</td>
+      <td>SAP, INC</td>
+      <td>PARTNER</td>
+      <td>38.00</td>
+      <td>29-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C6305101</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BLAND, EDWARD</td>
+      <td>GASTONIA</td>
+      <td>NC</td>
+      <td>280526251</td>
+      <td>MEGA FORCE STAFFING</td>
+      <td>MANUFACTURER</td>
+      <td>19.00</td>
+      <td>02-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1081062</td>
+      <td>C2994925</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>C00458844</td>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>SACK, ROGER D. MR.</td>
+      <td>RANCHO MIRAGE</td>
+      <td>CA</td>
+      <td>922703416</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>110.00</td>
+      <td>30-OCT-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1047126</td>
+      <td>SA17.856471</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHURCH, MARY LOU LOU</td>
+      <td>SALIDA</td>
+      <td>CO</td>
+      <td>812013057</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>60.00</td>
+      <td>04-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPN08Y1</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PORST, MR. DANIEL J</td>
+      <td>ELK GROVE VILLAGE</td>
+      <td>IL</td>
+      <td>600073332</td>
+      <td>SELF EMPLOYED</td>
+      <td>PAINTER</td>
+      <td>15.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNH1WK9</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SIEGFRIED, EDWARD</td>
+      <td>BELMONT</td>
+      <td>MA</td>
+      <td>024782920</td>
+      <td>NaN</td>
+      <td>NOT EMPLOYED</td>
+      <td>250.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15710600A</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WYATT, JOAN</td>
+      <td>SAN ANTONIO</td>
+      <td>TX</td>
+      <td>782092803</td>
+      <td>SELF-EMPLOYED</td>
+      <td>DECORATOR</td>
+      <td>10.00</td>
+      <td>17-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7062171</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SOLLIDAY, LOUISE</td>
+      <td>TIDEWATER</td>
+      <td>OR</td>
+      <td>973909600</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>56.30</td>
+      <td>31-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1126762</td>
+      <td>C10459297</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>NORRIS, JO ANN</td>
+      <td>RALEIGH</td>
+      <td>NC</td>
+      <td>276076505</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>07-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10045006</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OLSON, SARAH</td>
+      <td>OMAHA</td>
+      <td>NE</td>
+      <td>681022923</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>50.00</td>
+      <td>15-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNZ15R7</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIEBE, SANDRA</td>
+      <td>NORTHVILLE</td>
+      <td>MI</td>
+      <td>481671701</td>
+      <td>BLOOMFIELD HILLS SCHOOLS</td>
+      <td>TEACHER</td>
+      <td>25.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7157006</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>NORTHRUP, ANGELA</td>
+      <td>WARWICK</td>
+      <td>NY</td>
+      <td>109903034</td>
+      <td>PACE UNIVERSITY</td>
+      <td>NURSING PROFESSOR</td>
+      <td>55.96</td>
+      <td>23-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ39JY3</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIFFITH, JUSTIN</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>152021018</td>
+      <td>REGIONAL LEARNING ALLIANCE</td>
+      <td>CEO</td>
+      <td>25.00</td>
+      <td>19-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C5977395</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>POMEROY, BRANDON</td>
+      <td>LEAWOOD</td>
+      <td>KS</td>
+      <td>662061433</td>
+      <td>KCUC</td>
+      <td>PHYSICIAN</td>
+      <td>58.65</td>
+      <td>20-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHC8A27</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BROWN, THOMAS</td>
+      <td>COLUMBIA</td>
+      <td>MD</td>
+      <td>210455314</td>
+      <td>SPACE TELESCOPE SCIENCE INSTITUTE</td>
+      <td>ASTROPHYSICIST</td>
+      <td>50.00</td>
+      <td>02-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14788304</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>C00458844</td>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>NEIMETH, CLIFFORD      E.</td>
+      <td>PHOENIX</td>
+      <td>AZ</td>
+      <td>850162132</td>
+      <td>GREENBERG TRAURIG LLP</td>
+      <td>SENIOR LAW PARTNER</td>
+      <td>250.00</td>
+      <td>30-SEP-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1031526</td>
+      <td>SA17.841450</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHITESTER, ELIZABETH</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>152193529</td>
+      <td>SELF EMPLOYED</td>
+      <td>CHILDCARE PROVIDER</td>
+      <td>15.00</td>
+      <td>30-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BN3GQJ6</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SIMPSON, CAROLYN C. MRS.</td>
+      <td>WILLOW PARK</td>
+      <td>TX</td>
+      <td>760873134</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077665</td>
+      <td>SA17.1312285</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>GIBSON, JACKIE</td>
+      <td>YUCCA VALLEY</td>
+      <td>CA</td>
+      <td>92286</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>88.33</td>
+      <td>04-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.110888</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>VELEZ, ALEXIS</td>
+      <td>MIAMI</td>
+      <td>FL</td>
+      <td>331725512</td>
+      <td>DOYOUREMEMBER, INC.</td>
+      <td>DIRECTOR OF OPERATIONS</td>
+      <td>15.00</td>
+      <td>13-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPNQCY9</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMSON, LYNNE</td>
+      <td>ORANGEVALE</td>
+      <td>CA</td>
+      <td>956624439</td>
+      <td>SIERRA MENTAL WELLNESS GROUP</td>
+      <td>THERAPIST</td>
+      <td>200.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BKW4SR3</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CLINTON, JOYCE</td>
+      <td>SCOTTSDALE</td>
+      <td>AZ</td>
+      <td>852541790</td>
+      <td>PRICEWATERHOUSECOOPERS LLP</td>
+      <td>CONSULTANT</td>
+      <td>25.00</td>
+      <td>22-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7306770</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>CORDUM, STEPHANIE</td>
+      <td>COLUMBIA</td>
+      <td>SC</td>
+      <td>29223</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>20.00</td>
+      <td>10-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1135871</td>
+      <td>SA18.2364473</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>POWELL, ROBERT</td>
+      <td>OKLAHOMA CITY</td>
+      <td>OK</td>
+      <td>73112</td>
+      <td>DEVON ENERGY</td>
+      <td>PETROLEUM GEOLOGIST</td>
+      <td>20.00</td>
+      <td>12-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1679616</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CHAVEZ, DORA</td>
+      <td>NEWARK</td>
+      <td>CA</td>
+      <td>945602753</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>07-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C16072791</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LIU, YANLING</td>
+      <td>FAIRFAX</td>
+      <td>VA</td>
+      <td>22031</td>
+      <td>LEIDOS BIOMED.</td>
+      <td>MANAGER</td>
+      <td>100.00</td>
+      <td>07-AUG-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1135871</td>
+      <td>SA17A.2157082</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>99970</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>SMERNES, ANTHONY</td>
+      <td>DAVIS</td>
+      <td>CA</td>
+      <td>95618</td>
+      <td>FIRST CORPORATE SOLUTIONS</td>
+      <td>CUSTOMER SERVICE SPECIALIST</td>
+      <td>2.40</td>
+      <td>10-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1552463</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99971</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BARLOW, SUSAN</td>
+      <td>NEWPORT BEACH</td>
+      <td>CA</td>
+      <td>926633876</td>
+      <td>BLUE MOON CAPITAL PARTNERS</td>
+      <td>SENIOR HOUSING FINANCE</td>
+      <td>375.00</td>
+      <td>31-OCT-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14641555</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99972</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DOSSANTOS, SERGIO</td>
+      <td>TAUNTON</td>
+      <td>MA</td>
+      <td>027804364</td>
+      <td>COMMONWEALTH OF MASSACHUSETTS MASSACHU</td>
+      <td>FIELD SERVICE TECHNICIAN</td>
+      <td>27.00</td>
+      <td>29-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BK6SGK2</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99973</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DEFRANCO, PAMELA</td>
+      <td>PAINESVILLE</td>
+      <td>OH</td>
+      <td>440775479</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>15.00</td>
+      <td>07-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BM1RAA9</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99974</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRAVES, LYDIA</td>
+      <td>MEDFORD</td>
+      <td>MA</td>
+      <td>021554313</td>
+      <td>LB GRAVES ARCHITECT</td>
+      <td>ARCHITECT</td>
+      <td>50.00</td>
+      <td>15-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10711811</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99975</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>ROGERS, GARRY</td>
+      <td>FRESNO</td>
+      <td>CA</td>
+      <td>93711</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>77.94</td>
+      <td>13-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.132619</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99976</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>ANDREAE, TIM</td>
+      <td>BOISE</td>
+      <td>ID</td>
+      <td>837024428</td>
+      <td>COMMUNITY OUTREACH COUNSELING</td>
+      <td>MENTAL HEALTH COUNSELOR</td>
+      <td>250.00</td>
+      <td>01-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNDRBE3</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99977</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>FENSTERWALD, JOHN</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951254030</td>
+      <td>EDSOURCE</td>
+      <td>WRITER</td>
+      <td>25.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C15402262</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99978</th>
+      <td>C00581876</td>
+      <td>P60003670</td>
+      <td>Kasich, John R.</td>
+      <td>NICHOLLS, RICHARD</td>
+      <td>BROOKFIELD</td>
+      <td>IL</td>
+      <td>605131144</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>11-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1073711</td>
+      <td>AD4CF2368A71F4E5EB30</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99979</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RAABE, PHYLLIS</td>
+      <td>NEW ORLEANS</td>
+      <td>LA</td>
+      <td>701153222</td>
+      <td>TULANE SCHOOL OF PUBLIC HEALTH AND TRO</td>
+      <td>ADJUNCT PROFESSOR</td>
+      <td>50.00</td>
+      <td>23-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1091720</td>
+      <td>C5142844</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99980</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GLOVER, GINA</td>
+      <td>BELLFLOWER</td>
+      <td>CA</td>
+      <td>907065639</td>
+      <td>HERBALIFE, INTERNATIONAL</td>
+      <td>DIRECTOR</td>
+      <td>120.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15493728</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99981</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>KNEIER, BRIAN</td>
+      <td>SUN VALLEY</td>
+      <td>CA</td>
+      <td>91352</td>
+      <td>SELF-EMPLOYED</td>
+      <td>SELF-EMPLOYED</td>
+      <td>80.00</td>
+      <td>08-JUN-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1194175</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99982</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMAS, MONICA</td>
+      <td>ROANOKE</td>
+      <td>VA</td>
+      <td>240152425</td>
+      <td>CARILION CLINIC</td>
+      <td>SWITCHBOARD OPERATOR</td>
+      <td>10.00</td>
+      <td>21-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHMZHJ7</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99983</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>HARTMAN, CINDY</td>
+      <td>HAWKINS</td>
+      <td>WI</td>
+      <td>545309533</td>
+      <td>NORTHWOODS CONVENIENCE</td>
+      <td>CASHIER</td>
+      <td>100.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNGQ8E6</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99984</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WATT, JANET</td>
+      <td>PORTLAND</td>
+      <td>OR</td>
+      <td>972232681</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>30-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C8026090</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99985</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>AINSWORTH, KEVIN</td>
+      <td>DALLAS</td>
+      <td>TX</td>
+      <td>752305417</td>
+      <td>GUIDECAP PARTNERS</td>
+      <td>FINANCIAL CONSULTANT</td>
+      <td>500.00</td>
+      <td>20-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.258733</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99986</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>FULTON, DEWAYNE</td>
+      <td>NASHVILLE</td>
+      <td>TN</td>
+      <td>372163624</td>
+      <td>VANDERBILT UNIV. MEDICAL CENTER</td>
+      <td>DATABASE MANAGER</td>
+      <td>5.00</td>
+      <td>13-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BMB8ED3</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99987</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WOOD, DARROW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112011703</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>500.00</td>
+      <td>07-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13763630</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99988</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENEER, ANDREW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171752</td>
+      <td>GENIUS.COM</td>
+      <td>OPERATIONS</td>
+      <td>150.00</td>
+      <td>03-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJ70B08</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99989</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PATH, JAMES</td>
+      <td>MADISON</td>
+      <td>WI</td>
+      <td>537192502</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>18.75</td>
+      <td>13-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNVAWY8</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99990</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WINSTON, JUDITH</td>
+      <td>WASHINGTON</td>
+      <td>DC</td>
+      <td>200121444</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>27-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11323819</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99991</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENHEIMER, JASMIN</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171912</td>
+      <td>WORKING FAMILIES</td>
+      <td>FIELD DIRECTOR</td>
+      <td>7.50</td>
+      <td>05-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ0G335</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99992</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SHAW, KEITH</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951251741</td>
+      <td>QUALYS, INC.</td>
+      <td>WEB DEVELOPER</td>
+      <td>10.00</td>
+      <td>16-DEC-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077572</td>
+      <td>VPF7BGPZ056</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99993</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>DAVIS, JAMES</td>
+      <td>LAWRENCEVILLE</td>
+      <td>GA</td>
+      <td>30044</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>28.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2784340</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99994</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SWIRE, JAMES BENNETT MR.</td>
+      <td>NEW ROCHELLE</td>
+      <td>NY</td>
+      <td>108052128</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>-35.00</td>
+      <td>03-MAY-16</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>X</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>SA17A</td>
+      <td>1079356</td>
+      <td>SA17A.1834565B</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99995</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WILLEY, MICHAEL</td>
+      <td>CARMEL</td>
+      <td>IN</td>
+      <td>460325822</td>
+      <td>FIVE GUYS BURGERS AND FRIES</td>
+      <td>GENERAL MANAGER</td>
+      <td>20.00</td>
+      <td>17-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13890991</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99996</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SLATER, ROBERT G</td>
+      <td>MILLBRAE</td>
+      <td>CA</td>
+      <td>940301905</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>100.00</td>
+      <td>12-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJYHG36</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99997</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LEE, JOE JR.</td>
+      <td>LAFAYETTE</td>
+      <td>LA</td>
+      <td>70506</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>40.00</td>
+      <td>21-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2760544</td>
+      <td>P2016</td>
+    </tr>
+    <tr>
+      <th>99998</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GOGANIAN, ROBERTA</td>
+      <td>WABAN</td>
+      <td>MA</td>
+      <td>024682321</td>
+      <td>NEWTON PUBLIC SCHOOLS</td>
+      <td>READING TEACHER</td>
+      <td>120.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15245422A</td>
+      <td>G2016</td>
+    </tr>
+    <tr>
+      <th>99999</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BAIN, TUVANA</td>
+      <td>IRVINGTON</td>
+      <td>NY</td>
+      <td>105331921</td>
+      <td>BRONX VA</td>
+      <td>PHYSICIAN</td>
+      <td>100.00</td>
+      <td>26-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11247329</td>
+      <td>G2016</td>
+    </tr>
+  </tbody>
+</table>
+<p>100000 rows × 18 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO: dtypes</span>
 <span class="n">contribs</span><span class="o">.</span><span class="err">?</span><span class="o">??</span>
 
 <span class="c1">## TODO : how many records do we have?</span>
-<span class="c1">## Hint : count</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">contribs</span><span class="o">.</span><span class="err">???</span><span class="p">())</span>
-
-<span class="c1">## TODO : see some sample data</span>
-<span class="c1">## HInt : show()</span>
-<span class="n">contribs</span><span class="o">.</span><span class="err">???</span><span class="p">()</span>
+<span class="c1">## Hint : len</span>
+<span class="nb">print</span> <span class="p">(</span><span class="err">???</span><span class="p">(</span><span class="n">contribs</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -11842,7 +13191,8 @@ Here we have a sample of 10k for 2016 contributions.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11864,9 +13214,9 @@ YOu can always add more fields later.</p>
 <span class="c1">##    - COntribution Amount : ????</span>
 <span class="c1">##    - contribution zip code : ???</span>
 
-<span class="n">contribs2</span> <span class="o">=</span> <span class="n">contribs</span><span class="o">.</span><span class="n">select</span><span class="p">([</span> <span class="s1">&#39;CAND_NM&#39;</span><span class="p">,</span> <span class="s1">&#39;CONTBR_NM&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contribs2</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-<span class="n">contribs2</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">contribs2</span> <span class="o">=</span> <span class="n">contribs</span><span class="p">[[</span> <span class="s1">&#39;CAND_NM&#39;</span><span class="p">,</span> <span class="s1">&#39;CONTBR_NM&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">contribs2</span><span class="p">))</span>
+<span class="n">contribs2</span>
 </pre></div>
 
 </div>
@@ -11874,36 +13224,8 @@ YOu can always add more fields later.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-3:-Register-SQL-tables">Step 3: Register SQL tables<a class="anchor-link" href="#Step-3:-Register-SQL-tables">&#182;</a></h2><p>For ease of analytics let's also register these as SQL temp tables</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Hint : use &#39;createOrReplaceTempView&#39; function</span>
-<span class="n">contribs</span><span class="o">.</span><span class="err">???</span><span class="p">(</span><span class="s2">&quot;contribs&quot;</span><span class="p">)</span>
-<span class="n">contribs2</span><span class="o">.</span><span class="err">???</span><span class="p">(</span><span class="s2">&quot;contribs2&quot;</span><span class="p">)</span>
-
-<span class="c1">## list tables</span>
-<span class="c1">## Hint : Use function in spark.catalog.</span>
-<span class="c1">## Use tab completion</span>
-<span class="n">spark</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="err">???</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11918,22 +13240,15 @@ YOu can always add more fields later.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Contribution receipt less than zero?</span>
-<span class="c1">## TODO : filter</span>
-<span class="c1">## HINT : filter (&#39;column name for amount&#39; &lt; 0)</span>
-<span class="c1">#negative_contrib = contrib2.???(&#39; condition &#39;)</span>
-<span class="n">negative_contrib</span> <span class="o">=</span> <span class="n">contribs2</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">)</span>
+<span class="n">negative_contrib</span> <span class="o">=</span> <span class="n">contrib2</span><span class="p">[</span><span class="n">contrib2</span><span class="o">.</span><span class="err">????</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="c1">## TODO : how many negative contributions do we have?</span>
-<span class="c1">## Hint : count</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">negative_contrib</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="c1">## Hint : len</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_contrib</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
 
 <span class="c1">## TODO : print some sample data</span>
-<span class="c1">## Hint : show()</span>
-<span class="n">negative_contrib</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="c1">## TODO : Now try the query in SQL</span>
-<span class="c1">#neg = spark.sql(&quot;your sql query to find negative contribution goes here&quot;)</span>
-<span class="c1">#neg.show()</span>
+<span class="c1">## Hint : </span>
+<span class="n">negative_contrib</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -11941,7 +13256,8 @@ YOu can always add more fields later.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11956,9 +13272,9 @@ YOu can always add more fields later.</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO: </span>
 <span class="c1">##     extract only positive  contribs</span>
-<span class="n">pos_contribs</span> <span class="o">=</span> <span class="n">contribs2</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">)</span>
+<span class="n">pos_contribs</span> <span class="o">=</span> <span class="err">?</span><span class="o">??</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">pos_contribs</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos_contribs</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -11968,26 +13284,1359 @@ YOu can always add more fields later.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO : in SQL</span>
-<span class="n">pos_contribs2</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;query for possitive contributions go here&quot;</span><span class="p">)</span>
-<span class="n">pos_contribs2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1">## now register this as a new table</span>
-<span class="n">pos_contribs2</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;pos_contribs&quot;</span><span class="p">)</span>
-
-<span class="c1">## TODO : count how many postivive contribs </span>
-<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contribs</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CMTE_ID</th>
+      <th>CAND_ID</th>
+      <th>CAND_NM</th>
+      <th>CONTBR_NM</th>
+      <th>CONTBR_CITY</th>
+      <th>CONTBR_ST</th>
+      <th>CONTBR_ZIP</th>
+      <th>CONTBR_EMPLOYER</th>
+      <th>CONTBR_OCCUPATION</th>
+      <th>CONTB_RECEIPT_AMT</th>
+      <th>CONTB_RECEIPT_DT</th>
+      <th>RECEIPT_DESC</th>
+      <th>MEMO_CD</th>
+      <th>MEMO_TEXT</th>
+      <th>FORM_TP</th>
+      <th>FILE_NUM</th>
+      <th>TRAN_ID</th>
+      <th>ELECTION_TP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>C00605568</th>
+      <td>P20002671</td>
+      <td>Johnson, Gary</td>
+      <td>SMITH, PAUL</td>
+      <td>SAN DIEGO</td>
+      <td>CA</td>
+      <td>92117</td>
+      <td>SELF</td>
+      <td>RETIRED</td>
+      <td>150.00</td>
+      <td>16-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1112281</td>
+      <td>SA17A.66792</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00574624</th>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>BROWNE, THOMAS JOHN</td>
+      <td>WHITESBORO</td>
+      <td>NY</td>
+      <td>1.34921e+08</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>35.00</td>
+      <td>30-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.279055</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>RISENHOOVER, LINDSEY</td>
+      <td>TULSA</td>
+      <td>OK</td>
+      <td>74133</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>73.59</td>
+      <td>09-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.136964</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RUIZ, GIULIANNA</td>
+      <td>NEW YORK</td>
+      <td>NY</td>
+      <td>1.00026e+08</td>
+      <td>TRILANTIC CAPITAL MANAGEMENT L.P.</td>
+      <td>CHIEF COMPLIANCE OFFICER &amp; COUNSEL</td>
+      <td>500.00</td>
+      <td>19-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137625</td>
+      <td>C11919741</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BRIGGS, AMY</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>1.12314e+08</td>
+      <td>SAP, INC</td>
+      <td>PARTNER</td>
+      <td>38.00</td>
+      <td>29-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C6305101</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BLAND, EDWARD</td>
+      <td>GASTONIA</td>
+      <td>NC</td>
+      <td>2.80526e+08</td>
+      <td>MEGA FORCE STAFFING</td>
+      <td>MANUFACTURER</td>
+      <td>19.00</td>
+      <td>02-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1081062</td>
+      <td>C2994925</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00458844</th>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>SACK, ROGER D. MR.</td>
+      <td>RANCHO MIRAGE</td>
+      <td>CA</td>
+      <td>9.22703e+08</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>110.00</td>
+      <td>30-OCT-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1047126</td>
+      <td>SA17.856471</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHURCH, MARY LOU LOU</td>
+      <td>SALIDA</td>
+      <td>CO</td>
+      <td>8.12013e+08</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>60.00</td>
+      <td>04-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPN08Y1</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PORST, MR. DANIEL J</td>
+      <td>ELK GROVE VILLAGE</td>
+      <td>IL</td>
+      <td>6.00073e+08</td>
+      <td>SELF EMPLOYED</td>
+      <td>PAINTER</td>
+      <td>15.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNH1WK9</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SIEGFRIED, EDWARD</td>
+      <td>BELMONT</td>
+      <td>MA</td>
+      <td>2.47829e+07</td>
+      <td>NaN</td>
+      <td>NOT EMPLOYED</td>
+      <td>250.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15710600A</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WYATT, JOAN</td>
+      <td>SAN ANTONIO</td>
+      <td>TX</td>
+      <td>7.82093e+08</td>
+      <td>SELF-EMPLOYED</td>
+      <td>DECORATOR</td>
+      <td>10.00</td>
+      <td>17-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7062171</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SOLLIDAY, LOUISE</td>
+      <td>TIDEWATER</td>
+      <td>OR</td>
+      <td>9.7391e+08</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>56.30</td>
+      <td>31-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1126762</td>
+      <td>C10459297</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>NORRIS, JO ANN</td>
+      <td>RALEIGH</td>
+      <td>NC</td>
+      <td>2.76077e+08</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>07-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10045006</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OLSON, SARAH</td>
+      <td>OMAHA</td>
+      <td>NE</td>
+      <td>6.81023e+08</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>50.00</td>
+      <td>15-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNZ15R7</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIEBE, SANDRA</td>
+      <td>NORTHVILLE</td>
+      <td>MI</td>
+      <td>4.81672e+08</td>
+      <td>BLOOMFIELD HILLS SCHOOLS</td>
+      <td>TEACHER</td>
+      <td>25.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7157006</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>NORTHRUP, ANGELA</td>
+      <td>WARWICK</td>
+      <td>NY</td>
+      <td>1.09903e+08</td>
+      <td>PACE UNIVERSITY</td>
+      <td>NURSING PROFESSOR</td>
+      <td>55.96</td>
+      <td>23-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ39JY3</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIFFITH, JUSTIN</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>1.52021e+08</td>
+      <td>REGIONAL LEARNING ALLIANCE</td>
+      <td>CEO</td>
+      <td>25.00</td>
+      <td>19-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C5977395</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>POMEROY, BRANDON</td>
+      <td>LEAWOOD</td>
+      <td>KS</td>
+      <td>6.62061e+08</td>
+      <td>KCUC</td>
+      <td>PHYSICIAN</td>
+      <td>58.65</td>
+      <td>20-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHC8A27</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BROWN, THOMAS</td>
+      <td>COLUMBIA</td>
+      <td>MD</td>
+      <td>2.10455e+08</td>
+      <td>SPACE TELESCOPE SCIENCE INSTITUTE</td>
+      <td>ASTROPHYSICIST</td>
+      <td>50.00</td>
+      <td>02-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14788304</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00458844</th>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>NEIMETH, CLIFFORD      E.</td>
+      <td>PHOENIX</td>
+      <td>AZ</td>
+      <td>8.50162e+08</td>
+      <td>GREENBERG TRAURIG LLP</td>
+      <td>SENIOR LAW PARTNER</td>
+      <td>250.00</td>
+      <td>30-SEP-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1031526</td>
+      <td>SA17.841450</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHITESTER, ELIZABETH</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>1.52194e+08</td>
+      <td>SELF EMPLOYED</td>
+      <td>CHILDCARE PROVIDER</td>
+      <td>15.00</td>
+      <td>30-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BN3GQJ6</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00574624</th>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SIMPSON, CAROLYN C. MRS.</td>
+      <td>WILLOW PARK</td>
+      <td>TX</td>
+      <td>7.60873e+08</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077665</td>
+      <td>SA17.1312285</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>GIBSON, JACKIE</td>
+      <td>YUCCA VALLEY</td>
+      <td>CA</td>
+      <td>92286</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>88.33</td>
+      <td>04-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.110888</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>VELEZ, ALEXIS</td>
+      <td>MIAMI</td>
+      <td>FL</td>
+      <td>3.31726e+08</td>
+      <td>DOYOUREMEMBER, INC.</td>
+      <td>DIRECTOR OF OPERATIONS</td>
+      <td>15.00</td>
+      <td>13-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPNQCY9</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMSON, LYNNE</td>
+      <td>ORANGEVALE</td>
+      <td>CA</td>
+      <td>9.56624e+08</td>
+      <td>SIERRA MENTAL WELLNESS GROUP</td>
+      <td>THERAPIST</td>
+      <td>200.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BKW4SR3</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CLINTON, JOYCE</td>
+      <td>SCOTTSDALE</td>
+      <td>AZ</td>
+      <td>8.52542e+08</td>
+      <td>PRICEWATERHOUSECOOPERS LLP</td>
+      <td>CONSULTANT</td>
+      <td>25.00</td>
+      <td>22-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7306770</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>CORDUM, STEPHANIE</td>
+      <td>COLUMBIA</td>
+      <td>SC</td>
+      <td>29223</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>20.00</td>
+      <td>10-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1135871</td>
+      <td>SA18.2364473</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>POWELL, ROBERT</td>
+      <td>OKLAHOMA CITY</td>
+      <td>OK</td>
+      <td>73112</td>
+      <td>DEVON ENERGY</td>
+      <td>PETROLEUM GEOLOGIST</td>
+      <td>20.00</td>
+      <td>12-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1679616</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CHAVEZ, DORA</td>
+      <td>NEWARK</td>
+      <td>CA</td>
+      <td>9.45603e+08</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>07-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C16072791</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LIU, YANLING</td>
+      <td>FAIRFAX</td>
+      <td>VA</td>
+      <td>22031</td>
+      <td>LEIDOS BIOMED.</td>
+      <td>MANAGER</td>
+      <td>100.00</td>
+      <td>07-AUG-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1135871</td>
+      <td>SA17A.2157082</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>SMERNES, ANTHONY</td>
+      <td>DAVIS</td>
+      <td>CA</td>
+      <td>95618</td>
+      <td>FIRST CORPORATE SOLUTIONS</td>
+      <td>CUSTOMER SERVICE SPECIALIST</td>
+      <td>2.40</td>
+      <td>10-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1552463</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BARLOW, SUSAN</td>
+      <td>NEWPORT BEACH</td>
+      <td>CA</td>
+      <td>926633876</td>
+      <td>BLUE MOON CAPITAL PARTNERS</td>
+      <td>SENIOR HOUSING FINANCE</td>
+      <td>375.00</td>
+      <td>31-OCT-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14641555</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DOSSANTOS, SERGIO</td>
+      <td>TAUNTON</td>
+      <td>MA</td>
+      <td>27804364</td>
+      <td>COMMONWEALTH OF MASSACHUSETTS MASSACHU</td>
+      <td>FIELD SERVICE TECHNICIAN</td>
+      <td>27.00</td>
+      <td>29-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BK6SGK2</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DEFRANCO, PAMELA</td>
+      <td>PAINESVILLE</td>
+      <td>OH</td>
+      <td>440775479</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>15.00</td>
+      <td>07-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BM1RAA9</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRAVES, LYDIA</td>
+      <td>MEDFORD</td>
+      <td>MA</td>
+      <td>21554313</td>
+      <td>LB GRAVES ARCHITECT</td>
+      <td>ARCHITECT</td>
+      <td>50.00</td>
+      <td>15-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10711811</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>ROGERS, GARRY</td>
+      <td>FRESNO</td>
+      <td>CA</td>
+      <td>93711</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>77.94</td>
+      <td>13-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.132619</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>ANDREAE, TIM</td>
+      <td>BOISE</td>
+      <td>ID</td>
+      <td>837024428</td>
+      <td>COMMUNITY OUTREACH COUNSELING</td>
+      <td>MENTAL HEALTH COUNSELOR</td>
+      <td>250.00</td>
+      <td>01-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNDRBE3</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>FENSTERWALD, JOHN</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951254030</td>
+      <td>EDSOURCE</td>
+      <td>WRITER</td>
+      <td>25.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C15402262</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00581876</th>
+      <td>P60003670</td>
+      <td>Kasich, John R.</td>
+      <td>NICHOLLS, RICHARD</td>
+      <td>BROOKFIELD</td>
+      <td>IL</td>
+      <td>605131144</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>11-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1073711</td>
+      <td>AD4CF2368A71F4E5EB30</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RAABE, PHYLLIS</td>
+      <td>NEW ORLEANS</td>
+      <td>LA</td>
+      <td>701153222</td>
+      <td>TULANE SCHOOL OF PUBLIC HEALTH AND TRO</td>
+      <td>ADJUNCT PROFESSOR</td>
+      <td>50.00</td>
+      <td>23-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1091720</td>
+      <td>C5142844</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GLOVER, GINA</td>
+      <td>BELLFLOWER</td>
+      <td>CA</td>
+      <td>907065639</td>
+      <td>HERBALIFE, INTERNATIONAL</td>
+      <td>DIRECTOR</td>
+      <td>120.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15493728</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>KNEIER, BRIAN</td>
+      <td>SUN VALLEY</td>
+      <td>CA</td>
+      <td>91352</td>
+      <td>SELF-EMPLOYED</td>
+      <td>SELF-EMPLOYED</td>
+      <td>80.00</td>
+      <td>08-JUN-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1194175</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMAS, MONICA</td>
+      <td>ROANOKE</td>
+      <td>VA</td>
+      <td>240152425</td>
+      <td>CARILION CLINIC</td>
+      <td>SWITCHBOARD OPERATOR</td>
+      <td>10.00</td>
+      <td>21-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHMZHJ7</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>HARTMAN, CINDY</td>
+      <td>HAWKINS</td>
+      <td>WI</td>
+      <td>545309533</td>
+      <td>NORTHWOODS CONVENIENCE</td>
+      <td>CASHIER</td>
+      <td>100.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNGQ8E6</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WATT, JANET</td>
+      <td>PORTLAND</td>
+      <td>OR</td>
+      <td>972232681</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>30-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C8026090</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00574624</th>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>AINSWORTH, KEVIN</td>
+      <td>DALLAS</td>
+      <td>TX</td>
+      <td>752305417</td>
+      <td>GUIDECAP PARTNERS</td>
+      <td>FINANCIAL CONSULTANT</td>
+      <td>500.00</td>
+      <td>20-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.258733</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>FULTON, DEWAYNE</td>
+      <td>NASHVILLE</td>
+      <td>TN</td>
+      <td>372163624</td>
+      <td>VANDERBILT UNIV. MEDICAL CENTER</td>
+      <td>DATABASE MANAGER</td>
+      <td>5.00</td>
+      <td>13-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BMB8ED3</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WOOD, DARROW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112011703</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>500.00</td>
+      <td>07-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13763630</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENEER, ANDREW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171752</td>
+      <td>GENIUS.COM</td>
+      <td>OPERATIONS</td>
+      <td>150.00</td>
+      <td>03-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJ70B08</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PATH, JAMES</td>
+      <td>MADISON</td>
+      <td>WI</td>
+      <td>537192502</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>18.75</td>
+      <td>13-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNVAWY8</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WINSTON, JUDITH</td>
+      <td>WASHINGTON</td>
+      <td>DC</td>
+      <td>200121444</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>27-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11323819</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENHEIMER, JASMIN</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171912</td>
+      <td>WORKING FAMILIES</td>
+      <td>FIELD DIRECTOR</td>
+      <td>7.50</td>
+      <td>05-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ0G335</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SHAW, KEITH</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951251741</td>
+      <td>QUALYS, INC.</td>
+      <td>WEB DEVELOPER</td>
+      <td>10.00</td>
+      <td>16-DEC-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077572</td>
+      <td>VPF7BGPZ056</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>DAVIS, JAMES</td>
+      <td>LAWRENCEVILLE</td>
+      <td>GA</td>
+      <td>30044</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>28.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2784340</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00574624</th>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SWIRE, JAMES BENNETT MR.</td>
+      <td>NEW ROCHELLE</td>
+      <td>NY</td>
+      <td>108052128</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>-35.00</td>
+      <td>03-MAY-16</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>X</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>SA17A</td>
+      <td>1079356</td>
+      <td>SA17A.1834565B</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WILLEY, MICHAEL</td>
+      <td>CARMEL</td>
+      <td>IN</td>
+      <td>460325822</td>
+      <td>FIVE GUYS BURGERS AND FRIES</td>
+      <td>GENERAL MANAGER</td>
+      <td>20.00</td>
+      <td>17-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13890991</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00577130</th>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SLATER, ROBERT G</td>
+      <td>MILLBRAE</td>
+      <td>CA</td>
+      <td>940301905</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>100.00</td>
+      <td>12-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJYHG36</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00580100</th>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LEE, JOE JR.</td>
+      <td>LAFAYETTE</td>
+      <td>LA</td>
+      <td>70506</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>40.00</td>
+      <td>21-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2760544</td>
+      <td>P2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GOGANIAN, ROBERTA</td>
+      <td>WABAN</td>
+      <td>MA</td>
+      <td>24682321</td>
+      <td>NEWTON PUBLIC SCHOOLS</td>
+      <td>READING TEACHER</td>
+      <td>120.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15245422A</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>C00575795</th>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BAIN, TUVANA</td>
+      <td>IRVINGTON</td>
+      <td>NY</td>
+      <td>105331921</td>
+      <td>BRONX VA</td>
+      <td>PHYSICIAN</td>
+      <td>100.00</td>
+      <td>26-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11247329</td>
+      <td>G2016</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>100000 rows × 18 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11998,36 +14647,1495 @@ YOu can always add more fields later.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">split_col</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">contribs2</span><span class="p">[</span><span class="s1">&#39;CONTBR_NM&#39;</span><span class="p">],</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="n">first_last_name</span> <span class="o">=</span> <span class="n">contribs2</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;LASTNAME&#39;</span><span class="p">,</span> <span class="n">trim</span><span class="p">(</span><span class="n">split_col</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="n">first_last_name</span> <span class="o">=</span> <span class="n">first_last_name</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;FIRSTNAME&#39;</span><span class="p">,</span> <span class="n">trim</span><span class="p">(</span><span class="n">split_col</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
-
-<span class="n">first_last_name</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1">## register as sql table</span>
-<span class="n">first_last_name</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;pos_contribs&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contribs2</span><span class="p">[</span><span class="s1">&#39;LASTNAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contribs2</span><span class="p">[</span><span class="s1">&#39;CONTBR_NM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">contribs2</span><span class="p">[</span><span class="s1">&#39;FIRSTNAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contribs2</span><span class="p">[</span><span class="s1">&#39;CONTBR_NM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">contribs2</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[39]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CMTE_ID</th>
+      <th>CAND_ID</th>
+      <th>CAND_NM</th>
+      <th>CONTBR_NM</th>
+      <th>CONTBR_CITY</th>
+      <th>CONTBR_ST</th>
+      <th>CONTBR_ZIP</th>
+      <th>CONTBR_EMPLOYER</th>
+      <th>CONTBR_OCCUPATION</th>
+      <th>CONTB_RECEIPT_AMT</th>
+      <th>CONTB_RECEIPT_DT</th>
+      <th>RECEIPT_DESC</th>
+      <th>MEMO_CD</th>
+      <th>MEMO_TEXT</th>
+      <th>FORM_TP</th>
+      <th>FILE_NUM</th>
+      <th>TRAN_ID</th>
+      <th>ELECTION_TP</th>
+      <th>LASTNAME</th>
+      <th>FIRSTNAME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C00605568</td>
+      <td>P20002671</td>
+      <td>Johnson, Gary</td>
+      <td>SMITH, PAUL</td>
+      <td>SAN DIEGO</td>
+      <td>CA</td>
+      <td>92117</td>
+      <td>SELF</td>
+      <td>RETIRED</td>
+      <td>150.00</td>
+      <td>16-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1112281</td>
+      <td>SA17A.66792</td>
+      <td>G2016</td>
+      <td>SMITH</td>
+      <td>PAUL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>BROWNE, THOMAS JOHN</td>
+      <td>WHITESBORO</td>
+      <td>NY</td>
+      <td>134921106</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>35.00</td>
+      <td>30-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.279055</td>
+      <td>P2016</td>
+      <td>BROWNE</td>
+      <td>THOMAS JOHN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>RISENHOOVER, LINDSEY</td>
+      <td>TULSA</td>
+      <td>OK</td>
+      <td>74133</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>73.59</td>
+      <td>09-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.136964</td>
+      <td>G2016</td>
+      <td>RISENHOOVER</td>
+      <td>LINDSEY</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RUIZ, GIULIANNA</td>
+      <td>NEW YORK</td>
+      <td>NY</td>
+      <td>100025651</td>
+      <td>TRILANTIC CAPITAL MANAGEMENT L.P.</td>
+      <td>CHIEF COMPLIANCE OFFICER &amp; COUNSEL</td>
+      <td>500.00</td>
+      <td>19-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137625</td>
+      <td>C11919741</td>
+      <td>G2016</td>
+      <td>RUIZ</td>
+      <td>GIULIANNA</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BRIGGS, AMY</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112314003</td>
+      <td>SAP, INC</td>
+      <td>PARTNER</td>
+      <td>38.00</td>
+      <td>29-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C6305101</td>
+      <td>P2016</td>
+      <td>BRIGGS</td>
+      <td>AMY</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BLAND, EDWARD</td>
+      <td>GASTONIA</td>
+      <td>NC</td>
+      <td>280526251</td>
+      <td>MEGA FORCE STAFFING</td>
+      <td>MANUFACTURER</td>
+      <td>19.00</td>
+      <td>02-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1081062</td>
+      <td>C2994925</td>
+      <td>P2016</td>
+      <td>BLAND</td>
+      <td>EDWARD</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>C00458844</td>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>SACK, ROGER D. MR.</td>
+      <td>RANCHO MIRAGE</td>
+      <td>CA</td>
+      <td>922703416</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>110.00</td>
+      <td>30-OCT-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1047126</td>
+      <td>SA17.856471</td>
+      <td>P2016</td>
+      <td>SACK</td>
+      <td>ROGER D. MR.</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHURCH, MARY LOU LOU</td>
+      <td>SALIDA</td>
+      <td>CO</td>
+      <td>812013057</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>60.00</td>
+      <td>04-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPN08Y1</td>
+      <td>P2016</td>
+      <td>CHURCH</td>
+      <td>MARY LOU LOU</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PORST, MR. DANIEL J</td>
+      <td>ELK GROVE VILLAGE</td>
+      <td>IL</td>
+      <td>600073332</td>
+      <td>SELF EMPLOYED</td>
+      <td>PAINTER</td>
+      <td>15.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNH1WK9</td>
+      <td>P2016</td>
+      <td>PORST</td>
+      <td>MR. DANIEL J</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SIEGFRIED, EDWARD</td>
+      <td>BELMONT</td>
+      <td>MA</td>
+      <td>024782920</td>
+      <td>NaN</td>
+      <td>NOT EMPLOYED</td>
+      <td>250.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15710600A</td>
+      <td>G2016</td>
+      <td>SIEGFRIED</td>
+      <td>EDWARD</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WYATT, JOAN</td>
+      <td>SAN ANTONIO</td>
+      <td>TX</td>
+      <td>782092803</td>
+      <td>SELF-EMPLOYED</td>
+      <td>DECORATOR</td>
+      <td>10.00</td>
+      <td>17-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7062171</td>
+      <td>P2016</td>
+      <td>WYATT</td>
+      <td>JOAN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>SOLLIDAY, LOUISE</td>
+      <td>TIDEWATER</td>
+      <td>OR</td>
+      <td>973909600</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>56.30</td>
+      <td>31-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1126762</td>
+      <td>C10459297</td>
+      <td>G2016</td>
+      <td>SOLLIDAY</td>
+      <td>LOUISE</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>NORRIS, JO ANN</td>
+      <td>RALEIGH</td>
+      <td>NC</td>
+      <td>276076505</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>07-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10045006</td>
+      <td>G2016</td>
+      <td>NORRIS</td>
+      <td>JO ANN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OLSON, SARAH</td>
+      <td>OMAHA</td>
+      <td>NE</td>
+      <td>681022923</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>50.00</td>
+      <td>15-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNZ15R7</td>
+      <td>P2016</td>
+      <td>OLSON</td>
+      <td>SARAH</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIEBE, SANDRA</td>
+      <td>NORTHVILLE</td>
+      <td>MI</td>
+      <td>481671701</td>
+      <td>BLOOMFIELD HILLS SCHOOLS</td>
+      <td>TEACHER</td>
+      <td>25.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7157006</td>
+      <td>P2016</td>
+      <td>GRIEBE</td>
+      <td>SANDRA</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>NORTHRUP, ANGELA</td>
+      <td>WARWICK</td>
+      <td>NY</td>
+      <td>109903034</td>
+      <td>PACE UNIVERSITY</td>
+      <td>NURSING PROFESSOR</td>
+      <td>55.96</td>
+      <td>23-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ39JY3</td>
+      <td>P2016</td>
+      <td>NORTHRUP</td>
+      <td>ANGELA</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRIFFITH, JUSTIN</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>152021018</td>
+      <td>REGIONAL LEARNING ALLIANCE</td>
+      <td>CEO</td>
+      <td>25.00</td>
+      <td>19-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1099613</td>
+      <td>C5977395</td>
+      <td>P2016</td>
+      <td>GRIFFITH</td>
+      <td>JUSTIN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>POMEROY, BRANDON</td>
+      <td>LEAWOOD</td>
+      <td>KS</td>
+      <td>662061433</td>
+      <td>KCUC</td>
+      <td>PHYSICIAN</td>
+      <td>58.65</td>
+      <td>20-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHC8A27</td>
+      <td>P2016</td>
+      <td>POMEROY</td>
+      <td>BRANDON</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BROWN, THOMAS</td>
+      <td>COLUMBIA</td>
+      <td>MD</td>
+      <td>210455314</td>
+      <td>SPACE TELESCOPE SCIENCE INSTITUTE</td>
+      <td>ASTROPHYSICIST</td>
+      <td>50.00</td>
+      <td>02-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14788304</td>
+      <td>G2016</td>
+      <td>BROWN</td>
+      <td>THOMAS</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>C00458844</td>
+      <td>P60006723</td>
+      <td>Rubio, Marco</td>
+      <td>NEIMETH, CLIFFORD      E.</td>
+      <td>PHOENIX</td>
+      <td>AZ</td>
+      <td>850162132</td>
+      <td>GREENBERG TRAURIG LLP</td>
+      <td>SENIOR LAW PARTNER</td>
+      <td>250.00</td>
+      <td>30-SEP-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1031526</td>
+      <td>SA17.841450</td>
+      <td>P2016</td>
+      <td>NEIMETH</td>
+      <td>CLIFFORD      E.</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>CHITESTER, ELIZABETH</td>
+      <td>PITTSBURGH</td>
+      <td>PA</td>
+      <td>152193529</td>
+      <td>SELF EMPLOYED</td>
+      <td>CHILDCARE PROVIDER</td>
+      <td>15.00</td>
+      <td>30-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BN3GQJ6</td>
+      <td>P2016</td>
+      <td>CHITESTER</td>
+      <td>ELIZABETH</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SIMPSON, CAROLYN C. MRS.</td>
+      <td>WILLOW PARK</td>
+      <td>TX</td>
+      <td>760873134</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1077665</td>
+      <td>SA17.1312285</td>
+      <td>P2016</td>
+      <td>SIMPSON</td>
+      <td>CAROLYN C. MRS.</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>GIBSON, JACKIE</td>
+      <td>YUCCA VALLEY</td>
+      <td>CA</td>
+      <td>92286</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>88.33</td>
+      <td>04-SEP-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.110888</td>
+      <td>G2016</td>
+      <td>GIBSON</td>
+      <td>JACKIE</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>VELEZ, ALEXIS</td>
+      <td>MIAMI</td>
+      <td>FL</td>
+      <td>331725512</td>
+      <td>DOYOUREMEMBER, INC.</td>
+      <td>DIRECTOR OF OPERATIONS</td>
+      <td>15.00</td>
+      <td>13-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1094141</td>
+      <td>VPF7BPNQCY9</td>
+      <td>P2016</td>
+      <td>VELEZ</td>
+      <td>ALEXIS</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMSON, LYNNE</td>
+      <td>ORANGEVALE</td>
+      <td>CA</td>
+      <td>956624439</td>
+      <td>SIERRA MENTAL WELLNESS GROUP</td>
+      <td>THERAPIST</td>
+      <td>200.00</td>
+      <td>05-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BKW4SR3</td>
+      <td>P2016</td>
+      <td>THOMSON</td>
+      <td>LYNNE</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CLINTON, JOYCE</td>
+      <td>SCOTTSDALE</td>
+      <td>AZ</td>
+      <td>852541790</td>
+      <td>PRICEWATERHOUSECOOPERS LLP</td>
+      <td>CONSULTANT</td>
+      <td>25.00</td>
+      <td>22-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C7306770</td>
+      <td>P2016</td>
+      <td>CLINTON</td>
+      <td>JOYCE</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>CORDUM, STEPHANIE</td>
+      <td>COLUMBIA</td>
+      <td>SC</td>
+      <td>29223</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>20.00</td>
+      <td>10-AUG-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1135871</td>
+      <td>SA18.2364473</td>
+      <td>G2016</td>
+      <td>CORDUM</td>
+      <td>STEPHANIE</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>POWELL, ROBERT</td>
+      <td>OKLAHOMA CITY</td>
+      <td>OK</td>
+      <td>73112</td>
+      <td>DEVON ENERGY</td>
+      <td>PETROLEUM GEOLOGIST</td>
+      <td>20.00</td>
+      <td>12-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1679616</td>
+      <td>P2016</td>
+      <td>POWELL</td>
+      <td>ROBERT</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>CHAVEZ, DORA</td>
+      <td>NEWARK</td>
+      <td>CA</td>
+      <td>945602753</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>07-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C16072791</td>
+      <td>G2016</td>
+      <td>CHAVEZ</td>
+      <td>DORA</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LIU, YANLING</td>
+      <td>FAIRFAX</td>
+      <td>VA</td>
+      <td>22031</td>
+      <td>LEIDOS BIOMED.</td>
+      <td>MANAGER</td>
+      <td>100.00</td>
+      <td>07-AUG-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1135871</td>
+      <td>SA17A.2157082</td>
+      <td>G2016</td>
+      <td>LIU</td>
+      <td>YANLING</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>99970</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>SMERNES, ANTHONY</td>
+      <td>DAVIS</td>
+      <td>CA</td>
+      <td>95618</td>
+      <td>FIRST CORPORATE SOLUTIONS</td>
+      <td>CUSTOMER SERVICE SPECIALIST</td>
+      <td>2.40</td>
+      <td>10-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1552463</td>
+      <td>P2016</td>
+      <td>SMERNES</td>
+      <td>ANTHONY</td>
+    </tr>
+    <tr>
+      <th>99971</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BARLOW, SUSAN</td>
+      <td>NEWPORT BEACH</td>
+      <td>CA</td>
+      <td>926633876</td>
+      <td>BLUE MOON CAPITAL PARTNERS</td>
+      <td>SENIOR HOUSING FINANCE</td>
+      <td>375.00</td>
+      <td>31-OCT-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C14641555</td>
+      <td>G2016</td>
+      <td>BARLOW</td>
+      <td>SUSAN</td>
+    </tr>
+    <tr>
+      <th>99972</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DOSSANTOS, SERGIO</td>
+      <td>TAUNTON</td>
+      <td>MA</td>
+      <td>027804364</td>
+      <td>COMMONWEALTH OF MASSACHUSETTS MASSACHU</td>
+      <td>FIELD SERVICE TECHNICIAN</td>
+      <td>27.00</td>
+      <td>29-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BK6SGK2</td>
+      <td>P2016</td>
+      <td>DOSSANTOS</td>
+      <td>SERGIO</td>
+    </tr>
+    <tr>
+      <th>99973</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>DEFRANCO, PAMELA</td>
+      <td>PAINESVILLE</td>
+      <td>OH</td>
+      <td>440775479</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>15.00</td>
+      <td>07-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BM1RAA9</td>
+      <td>P2016</td>
+      <td>DEFRANCO</td>
+      <td>PAMELA</td>
+    </tr>
+    <tr>
+      <th>99974</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GRAVES, LYDIA</td>
+      <td>MEDFORD</td>
+      <td>MA</td>
+      <td>021554313</td>
+      <td>LB GRAVES ARCHITECT</td>
+      <td>ARCHITECT</td>
+      <td>50.00</td>
+      <td>15-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C10711811</td>
+      <td>G2016</td>
+      <td>GRAVES</td>
+      <td>LYDIA</td>
+    </tr>
+    <tr>
+      <th>99975</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>ROGERS, GARRY</td>
+      <td>FRESNO</td>
+      <td>CA</td>
+      <td>93711</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>77.94</td>
+      <td>13-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1146165</td>
+      <td>SA18.132619</td>
+      <td>G2016</td>
+      <td>ROGERS</td>
+      <td>GARRY</td>
+    </tr>
+    <tr>
+      <th>99976</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>ANDREAE, TIM</td>
+      <td>BOISE</td>
+      <td>ID</td>
+      <td>837024428</td>
+      <td>COMMUNITY OUTREACH COUNSELING</td>
+      <td>MENTAL HEALTH COUNSELOR</td>
+      <td>250.00</td>
+      <td>01-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNDRBE3</td>
+      <td>P2016</td>
+      <td>ANDREAE</td>
+      <td>TIM</td>
+    </tr>
+    <tr>
+      <th>99977</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>FENSTERWALD, JOHN</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951254030</td>
+      <td>EDSOURCE</td>
+      <td>WRITER</td>
+      <td>25.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1133832</td>
+      <td>C15402262</td>
+      <td>G2016</td>
+      <td>FENSTERWALD</td>
+      <td>JOHN</td>
+    </tr>
+    <tr>
+      <th>99978</th>
+      <td>C00581876</td>
+      <td>P60003670</td>
+      <td>Kasich, John R.</td>
+      <td>NICHOLLS, RICHARD</td>
+      <td>BROOKFIELD</td>
+      <td>IL</td>
+      <td>605131144</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>11-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1073711</td>
+      <td>AD4CF2368A71F4E5EB30</td>
+      <td>P2016</td>
+      <td>NICHOLLS</td>
+      <td>RICHARD</td>
+    </tr>
+    <tr>
+      <th>99979</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>RAABE, PHYLLIS</td>
+      <td>NEW ORLEANS</td>
+      <td>LA</td>
+      <td>701153222</td>
+      <td>TULANE SCHOOL OF PUBLIC HEALTH AND TRO</td>
+      <td>ADJUNCT PROFESSOR</td>
+      <td>50.00</td>
+      <td>23-MAY-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1091720</td>
+      <td>C5142844</td>
+      <td>P2016</td>
+      <td>RAABE</td>
+      <td>PHYLLIS</td>
+    </tr>
+    <tr>
+      <th>99980</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GLOVER, GINA</td>
+      <td>BELLFLOWER</td>
+      <td>CA</td>
+      <td>907065639</td>
+      <td>HERBALIFE, INTERNATIONAL</td>
+      <td>DIRECTOR</td>
+      <td>120.00</td>
+      <td>05-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15493728</td>
+      <td>G2016</td>
+      <td>GLOVER</td>
+      <td>GINA</td>
+    </tr>
+    <tr>
+      <th>99981</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>KNEIER, BRIAN</td>
+      <td>SUN VALLEY</td>
+      <td>CA</td>
+      <td>91352</td>
+      <td>SELF-EMPLOYED</td>
+      <td>SELF-EMPLOYED</td>
+      <td>80.00</td>
+      <td>08-JUN-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1104813</td>
+      <td>SA18.1194175</td>
+      <td>P2016</td>
+      <td>KNEIER</td>
+      <td>BRIAN</td>
+    </tr>
+    <tr>
+      <th>99982</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>THOMAS, MONICA</td>
+      <td>ROANOKE</td>
+      <td>VA</td>
+      <td>240152425</td>
+      <td>CARILION CLINIC</td>
+      <td>SWITCHBOARD OPERATOR</td>
+      <td>10.00</td>
+      <td>21-JAN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077648</td>
+      <td>VPF7BHMZHJ7</td>
+      <td>P2016</td>
+      <td>THOMAS</td>
+      <td>MONICA</td>
+    </tr>
+    <tr>
+      <th>99983</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>HARTMAN, CINDY</td>
+      <td>HAWKINS</td>
+      <td>WI</td>
+      <td>545309533</td>
+      <td>NORTHWOODS CONVENIENCE</td>
+      <td>CASHIER</td>
+      <td>100.00</td>
+      <td>04-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNGQ8E6</td>
+      <td>P2016</td>
+      <td>HARTMAN</td>
+      <td>CINDY</td>
+    </tr>
+    <tr>
+      <th>99984</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WATT, JANET</td>
+      <td>PORTLAND</td>
+      <td>OR</td>
+      <td>972232681</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>25.00</td>
+      <td>30-JUL-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1109498</td>
+      <td>C8026090</td>
+      <td>G2016</td>
+      <td>WATT</td>
+      <td>JANET</td>
+    </tr>
+    <tr>
+      <th>99985</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>AINSWORTH, KEVIN</td>
+      <td>DALLAS</td>
+      <td>TX</td>
+      <td>752305417</td>
+      <td>GUIDECAP PARTNERS</td>
+      <td>FINANCIAL CONSULTANT</td>
+      <td>500.00</td>
+      <td>20-APR-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1024046</td>
+      <td>SA17.258733</td>
+      <td>P2016</td>
+      <td>AINSWORTH</td>
+      <td>KEVIN</td>
+    </tr>
+    <tr>
+      <th>99986</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>FULTON, DEWAYNE</td>
+      <td>NASHVILLE</td>
+      <td>TN</td>
+      <td>372163624</td>
+      <td>VANDERBILT UNIV. MEDICAL CENTER</td>
+      <td>DATABASE MANAGER</td>
+      <td>5.00</td>
+      <td>13-MAR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077404</td>
+      <td>VPF7BMB8ED3</td>
+      <td>P2016</td>
+      <td>FULTON</td>
+      <td>DEWAYNE</td>
+    </tr>
+    <tr>
+      <th>99987</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WOOD, DARROW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112011703</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>INFORMATION REQUESTED</td>
+      <td>500.00</td>
+      <td>07-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13763630</td>
+      <td>G2016</td>
+      <td>WOOD</td>
+      <td>DARROW</td>
+    </tr>
+    <tr>
+      <th>99988</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENEER, ANDREW</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171752</td>
+      <td>GENIUS.COM</td>
+      <td>OPERATIONS</td>
+      <td>150.00</td>
+      <td>03-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJ70B08</td>
+      <td>P2016</td>
+      <td>OPPENEER</td>
+      <td>ANDREW</td>
+    </tr>
+    <tr>
+      <th>99989</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>PATH, JAMES</td>
+      <td>MADISON</td>
+      <td>WI</td>
+      <td>537192502</td>
+      <td>NONE</td>
+      <td>NOT EMPLOYED</td>
+      <td>18.75</td>
+      <td>13-APR-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1079445</td>
+      <td>VPF7BNVAWY8</td>
+      <td>P2016</td>
+      <td>PATH</td>
+      <td>JAMES</td>
+    </tr>
+    <tr>
+      <th>99990</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WINSTON, JUDITH</td>
+      <td>WASHINGTON</td>
+      <td>DC</td>
+      <td>200121444</td>
+      <td>NaN</td>
+      <td>RETIRED</td>
+      <td>100.00</td>
+      <td>27-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11323819</td>
+      <td>G2016</td>
+      <td>WINSTON</td>
+      <td>JUDITH</td>
+    </tr>
+    <tr>
+      <th>99991</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>OPPENHEIMER, JASMIN</td>
+      <td>BROOKLYN</td>
+      <td>NY</td>
+      <td>112171912</td>
+      <td>WORKING FAMILIES</td>
+      <td>FIELD DIRECTOR</td>
+      <td>7.50</td>
+      <td>05-JUN-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1126927</td>
+      <td>VPF7BQ0G335</td>
+      <td>P2016</td>
+      <td>OPPENHEIMER</td>
+      <td>JASMIN</td>
+    </tr>
+    <tr>
+      <th>99992</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SHAW, KEITH</td>
+      <td>SAN JOSE</td>
+      <td>CA</td>
+      <td>951251741</td>
+      <td>QUALYS, INC.</td>
+      <td>WEB DEVELOPER</td>
+      <td>10.00</td>
+      <td>16-DEC-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077572</td>
+      <td>VPF7BGPZ056</td>
+      <td>P2016</td>
+      <td>SHAW</td>
+      <td>KEITH</td>
+    </tr>
+    <tr>
+      <th>99993</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>DAVIS, JAMES</td>
+      <td>LAWRENCEVILLE</td>
+      <td>GA</td>
+      <td>30044</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>28.00</td>
+      <td>20-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2784340</td>
+      <td>P2016</td>
+      <td>DAVIS</td>
+      <td>JAMES</td>
+    </tr>
+    <tr>
+      <th>99994</th>
+      <td>C00574624</td>
+      <td>P60006111</td>
+      <td>Cruz, Rafael Edward 'Ted'</td>
+      <td>SWIRE, JAMES BENNETT MR.</td>
+      <td>NEW ROCHELLE</td>
+      <td>NY</td>
+      <td>108052128</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>-35.00</td>
+      <td>03-MAY-16</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>X</td>
+      <td>REDESIGNATION TO GENERAL</td>
+      <td>SA17A</td>
+      <td>1079356</td>
+      <td>SA17A.1834565B</td>
+      <td>P2016</td>
+      <td>SWIRE</td>
+      <td>JAMES BENNETT MR.</td>
+    </tr>
+    <tr>
+      <th>99995</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>WILLEY, MICHAEL</td>
+      <td>CARMEL</td>
+      <td>IN</td>
+      <td>460325822</td>
+      <td>FIVE GUYS BURGERS AND FRIES</td>
+      <td>GENERAL MANAGER</td>
+      <td>20.00</td>
+      <td>17-OCT-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>* HILLARY VICTORY FUND</td>
+      <td>SA18</td>
+      <td>1137788</td>
+      <td>C13890991</td>
+      <td>G2016</td>
+      <td>WILLEY</td>
+      <td>MICHAEL</td>
+    </tr>
+    <tr>
+      <th>99996</th>
+      <td>C00577130</td>
+      <td>P60007168</td>
+      <td>Sanders, Bernard</td>
+      <td>SLATER, ROBERT G</td>
+      <td>MILLBRAE</td>
+      <td>CA</td>
+      <td>940301905</td>
+      <td>NOT EMPLOYED</td>
+      <td>NOT EMPLOYED</td>
+      <td>100.00</td>
+      <td>12-FEB-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1077916</td>
+      <td>VPF7BJYHG36</td>
+      <td>P2016</td>
+      <td>SLATER</td>
+      <td>ROBERT G</td>
+    </tr>
+    <tr>
+      <th>99997</th>
+      <td>C00580100</td>
+      <td>P80001571</td>
+      <td>Trump, Donald J.</td>
+      <td>LEE, JOE JR.</td>
+      <td>LAFAYETTE</td>
+      <td>LA</td>
+      <td>70506</td>
+      <td>RETIRED</td>
+      <td>RETIRED</td>
+      <td>40.00</td>
+      <td>21-JUL-16</td>
+      <td>NaN</td>
+      <td>X</td>
+      <td>NaN</td>
+      <td>SA18</td>
+      <td>1133930</td>
+      <td>SA18.2760544</td>
+      <td>P2016</td>
+      <td>LEE</td>
+      <td>JOE JR.</td>
+    </tr>
+    <tr>
+      <th>99998</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>GOGANIAN, ROBERTA</td>
+      <td>WABAN</td>
+      <td>MA</td>
+      <td>024682321</td>
+      <td>NEWTON PUBLIC SCHOOLS</td>
+      <td>READING TEACHER</td>
+      <td>120.00</td>
+      <td>03-NOV-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>* EARMARKED CONTRIBUTION: SEE BELOW</td>
+      <td>SA17A</td>
+      <td>1133832</td>
+      <td>C15245422A</td>
+      <td>G2016</td>
+      <td>GOGANIAN</td>
+      <td>ROBERTA</td>
+    </tr>
+    <tr>
+      <th>99999</th>
+      <td>C00575795</td>
+      <td>P00003392</td>
+      <td>Clinton, Hillary Rodham</td>
+      <td>BAIN, TUVANA</td>
+      <td>IRVINGTON</td>
+      <td>NY</td>
+      <td>105331921</td>
+      <td>BRONX VA</td>
+      <td>PHYSICIAN</td>
+      <td>100.00</td>
+      <td>26-SEP-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SA17A</td>
+      <td>1137625</td>
+      <td>C11247329</td>
+      <td>G2016</td>
+      <td>BAIN</td>
+      <td>TUVANA</td>
+    </tr>
+  </tbody>
+</table>
+<p>100000 rows × 20 columns</p>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-7:-Analyze-data">Step 7: Analyze data<a class="anchor-link" href="#Step-7:-Analyze-data">&#182;</a></h2><p>We can use Dataframe DSL language or SQL queries to perform analysis.<br>
-Practice both.<br>
-We will give you hints along the way.</p>
+<h2 id="Step-7:-Analyze-data">Step 7: Analyze data<a class="anchor-link" href="#Step-7:-Analyze-data">&#182;</a></h2><p>We will analyze the data.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12041,23 +16149,9 @@ We will give you hints along the way.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO : What is the breakdown by candidate name?</span>
-<span class="c1">## Hint : groupBy(&quot;name&quot;).count()</span>
+<span class="c1">## Hint : groupby(&quot;name&quot;).size()</span>
 
-<span class="n">pos_contribs</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-<span class="c1">## TODO : try SQL queries</span>
-
-<span class="n">s</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">select CAND_NM, ????</span>
-<span class="s2">????</span>
-
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-<span class="c1">## TODO : sort the result by contrib total</span>
+<span class="n">pos_contribs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;???&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12065,11 +16159,34 @@ We will give you hints along the way.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7.2---Calculate-AVG,-MIN,-MAX-contributions-per-candidate">7.2 - Calculate AVG, MIN, MAX contributions per candidate<a class="anchor-link" href="#7.2---Calculate-AVG,-MIN,-MAX-contributions-per-candidate">&#182;</a></h3><p>For this we can easily use SQL</p>
+<h3 id="7.2---Calculate-mean,-min,-max-contributions-per-candidate">7.2 - Calculate mean, min, max contributions per candidate<a class="anchor-link" href="#7.2---Calculate-mean,-min,-max-contributions-per-candidate">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO:Calculate mean, min, max contributions per candidate</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="7.3---Calculate-average-contribution-by-Occupation">7.3 - Calculate average contribution by Occupation<a class="anchor-link" href="#7.3---Calculate-average-contribution-by-Occupation">&#182;</a></h3><p>If you are political consultants, which people you might try to solicit money?</p>
 
 </div>
 </div>
@@ -12080,15 +16197,7 @@ We will give you hints along the way.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO </span>
-
-<span class="n">s</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">select CAND_NM, AVG(???)  as avg_contrib , MAX(???) as max_contrib</span>
-<span class="s2">from pos_contribs</span>
-<span class="s2">group by ??? order by ???  DESC</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">avg_per_candidate</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">avg_per_candidate</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="c1">#avg_per_occupation = </span>
 </pre></div>
 
 </div>
@@ -12096,30 +16205,8 @@ We will give you hints along the way.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7.3---Calculate-AVG-contribution-by-Occupation">7.3 - Calculate AVG contribution by Occupation<a class="anchor-link" href="#7.3---Calculate-AVG-contribution-by-Occupation">&#182;</a></h3><p>If you are political consultants, which people you might try to solicit money?</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO </span>
-<span class="c1">#avg_per_occupation = spark.sql(&quot;&quot;)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12132,15 +16219,8 @@ We will give you hints along the way.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO : Use a sql query</span>
-<span class="c1">## Hint : you want to calcluate average contribution per zip</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Hint : you want to calcluate average contribution per zip</span>
 <span class="c1">## also calculate number of contribs per zipcode</span>
-
-<span class="n">s</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">write your sql here</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12153,8 +16233,7 @@ We will give you hints along the way.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Hint : to extract 5 digit zipcode </span>
-<span class="c1">## you can use : substring(CONTBR_ZIP, 0, 5) as zip</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Hint : You may need to convert zipcode to 5 digit format </span>
 </pre></div>
 
 </div>
@@ -12162,7 +16241,8 @@ We will give you hints along the way.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
