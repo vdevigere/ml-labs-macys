@@ -1,4 +1,4 @@
-# Machine Learning Labs for Tensorflow
+# Machine Learning Labs for Scikit-learn
 
 ## To view the labs
 Open 'README.html' in browser.  
