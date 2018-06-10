@@ -1,4 +1,4 @@
-# Machine Learning Labs for Scikit-learn
+# Machine Learning Labs for Python/Scikit-learn
 
 ## To view the labs
 Open 'README.html' in browser.  
